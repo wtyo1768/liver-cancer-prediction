@@ -1,0 +1,6 @@
+*.txt
+*.out
+
+__pycache__
+.vscode
+lightning_logs
