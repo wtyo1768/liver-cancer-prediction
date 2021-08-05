@@ -1,7 +1,9 @@
 
 
-image_size = 100
+image_size = 200
 channel = 3
+
+
 v = {
     # 'T1 HB': [[.2339]*channel, [.1966]*channel],
     # 'T2' :   [[.2339]*channel, [.1966]*channel],
@@ -10,3 +12,4 @@ v = {
     'T2' :   [[.2055]*channel, [.1727]*channel],
     'out':   [[.2000]*channel, [.1644]*channel],
 }
+print(v)

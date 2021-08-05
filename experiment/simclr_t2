@@ -1,0 +1,3200 @@
+nohup: ignoring input
+************SimCLR**************
+2021-07-15 10:02:31.013276: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+SimCLR(
+  (encoder): enc(
+    (enc): EfficientNet(
+      (_conv_stem): Conv2dStaticSamePadding(
+        3, 32, kernel_size=(3, 3), stride=(2, 2), bias=False
+        (static_padding): ZeroPad2d(padding=(1, 1, 1, 1), value=0.0)
+      )
+      (_bn0): BatchNorm2d(32, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+      (_blocks): ModuleList(
+        (0): MBConvBlock(
+          (_depthwise_conv): Conv2dStaticSamePadding(
+            32, 32, kernel_size=(3, 3), stride=[1, 1], groups=32, bias=False
+            (static_padding): ZeroPad2d(padding=(1, 1, 1, 1), value=0.0)
+          )
+          (_bn1): BatchNorm2d(32, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_se_reduce): Conv2dStaticSamePadding(
+            32, 8, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_se_expand): Conv2dStaticSamePadding(
+            8, 32, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_project_conv): Conv2dStaticSamePadding(
+            32, 16, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn2): BatchNorm2d(16, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_swish): MemoryEfficientSwish()
+        )
+        (1): MBConvBlock(
+          (_depthwise_conv): Conv2dStaticSamePadding(
+            16, 16, kernel_size=(3, 3), stride=(1, 1), groups=16, bias=False
+            (static_padding): ZeroPad2d(padding=(1, 1, 1, 1), value=0.0)
+          )
+          (_bn1): BatchNorm2d(16, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_se_reduce): Conv2dStaticSamePadding(
+            16, 4, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_se_expand): Conv2dStaticSamePadding(
+            4, 16, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_project_conv): Conv2dStaticSamePadding(
+            16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn2): BatchNorm2d(16, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_swish): MemoryEfficientSwish()
+        )
+        (2): MBConvBlock(
+          (_expand_conv): Conv2dStaticSamePadding(
+            16, 96, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn0): BatchNorm2d(96, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_depthwise_conv): Conv2dStaticSamePadding(
+            96, 96, kernel_size=(3, 3), stride=[2, 2], groups=96, bias=False
+            (static_padding): ZeroPad2d(padding=(1, 1, 1, 1), value=0.0)
+          )
+          (_bn1): BatchNorm2d(96, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_se_reduce): Conv2dStaticSamePadding(
+            96, 4, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_se_expand): Conv2dStaticSamePadding(
+            4, 96, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_project_conv): Conv2dStaticSamePadding(
+            96, 24, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn2): BatchNorm2d(24, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_swish): MemoryEfficientSwish()
+        )
+        (3): MBConvBlock(
+          (_expand_conv): Conv2dStaticSamePadding(
+            24, 144, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn0): BatchNorm2d(144, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_depthwise_conv): Conv2dStaticSamePadding(
+            144, 144, kernel_size=(3, 3), stride=(1, 1), groups=144, bias=False
+            (static_padding): ZeroPad2d(padding=(1, 1, 1, 1), value=0.0)
+          )
+          (_bn1): BatchNorm2d(144, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_se_reduce): Conv2dStaticSamePadding(
+            144, 6, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_se_expand): Conv2dStaticSamePadding(
+            6, 144, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_project_conv): Conv2dStaticSamePadding(
+            144, 24, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn2): BatchNorm2d(24, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_swish): MemoryEfficientSwish()
+        )
+        (4): MBConvBlock(
+          (_expand_conv): Conv2dStaticSamePadding(
+            24, 144, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn0): BatchNorm2d(144, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_depthwise_conv): Conv2dStaticSamePadding(
+            144, 144, kernel_size=(3, 3), stride=(1, 1), groups=144, bias=False
+            (static_padding): ZeroPad2d(padding=(1, 1, 1, 1), value=0.0)
+          )
+          (_bn1): BatchNorm2d(144, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_se_reduce): Conv2dStaticSamePadding(
+            144, 6, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_se_expand): Conv2dStaticSamePadding(
+            6, 144, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_project_conv): Conv2dStaticSamePadding(
+            144, 24, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn2): BatchNorm2d(24, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_swish): MemoryEfficientSwish()
+        )
+        (5): MBConvBlock(
+          (_expand_conv): Conv2dStaticSamePadding(
+            24, 144, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn0): BatchNorm2d(144, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_depthwise_conv): Conv2dStaticSamePadding(
+            144, 144, kernel_size=(5, 5), stride=[2, 2], groups=144, bias=False
+            (static_padding): ZeroPad2d(padding=(2, 2, 2, 2), value=0.0)
+          )
+          (_bn1): BatchNorm2d(144, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_se_reduce): Conv2dStaticSamePadding(
+            144, 6, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_se_expand): Conv2dStaticSamePadding(
+            6, 144, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_project_conv): Conv2dStaticSamePadding(
+            144, 48, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn2): BatchNorm2d(48, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_swish): MemoryEfficientSwish()
+        )
+        (6): MBConvBlock(
+          (_expand_conv): Conv2dStaticSamePadding(
+            48, 288, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn0): BatchNorm2d(288, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_depthwise_conv): Conv2dStaticSamePadding(
+            288, 288, kernel_size=(5, 5), stride=(1, 1), groups=288, bias=False
+            (static_padding): ZeroPad2d(padding=(2, 2, 2, 2), value=0.0)
+          )
+          (_bn1): BatchNorm2d(288, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_se_reduce): Conv2dStaticSamePadding(
+            288, 12, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_se_expand): Conv2dStaticSamePadding(
+            12, 288, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_project_conv): Conv2dStaticSamePadding(
+            288, 48, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn2): BatchNorm2d(48, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_swish): MemoryEfficientSwish()
+        )
+        (7): MBConvBlock(
+          (_expand_conv): Conv2dStaticSamePadding(
+            48, 288, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn0): BatchNorm2d(288, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_depthwise_conv): Conv2dStaticSamePadding(
+            288, 288, kernel_size=(5, 5), stride=(1, 1), groups=288, bias=False
+            (static_padding): ZeroPad2d(padding=(2, 2, 2, 2), value=0.0)
+          )
+          (_bn1): BatchNorm2d(288, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_se_reduce): Conv2dStaticSamePadding(
+            288, 12, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_se_expand): Conv2dStaticSamePadding(
+            12, 288, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_project_conv): Conv2dStaticSamePadding(
+            288, 48, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn2): BatchNorm2d(48, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_swish): MemoryEfficientSwish()
+        )
+        (8): MBConvBlock(
+          (_expand_conv): Conv2dStaticSamePadding(
+            48, 288, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn0): BatchNorm2d(288, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_depthwise_conv): Conv2dStaticSamePadding(
+            288, 288, kernel_size=(3, 3), stride=[2, 2], groups=288, bias=False
+            (static_padding): ZeroPad2d(padding=(1, 1, 1, 1), value=0.0)
+          )
+          (_bn1): BatchNorm2d(288, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_se_reduce): Conv2dStaticSamePadding(
+            288, 12, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_se_expand): Conv2dStaticSamePadding(
+            12, 288, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_project_conv): Conv2dStaticSamePadding(
+            288, 88, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn2): BatchNorm2d(88, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_swish): MemoryEfficientSwish()
+        )
+        (9): MBConvBlock(
+          (_expand_conv): Conv2dStaticSamePadding(
+            88, 528, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn0): BatchNorm2d(528, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_depthwise_conv): Conv2dStaticSamePadding(
+            528, 528, kernel_size=(3, 3), stride=(1, 1), groups=528, bias=False
+            (static_padding): ZeroPad2d(padding=(1, 1, 1, 1), value=0.0)
+          )
+          (_bn1): BatchNorm2d(528, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_se_reduce): Conv2dStaticSamePadding(
+            528, 22, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_se_expand): Conv2dStaticSamePadding(
+            22, 528, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_project_conv): Conv2dStaticSamePadding(
+            528, 88, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn2): BatchNorm2d(88, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_swish): MemoryEfficientSwish()
+        )
+        (10): MBConvBlock(
+          (_expand_conv): Conv2dStaticSamePadding(
+            88, 528, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn0): BatchNorm2d(528, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_depthwise_conv): Conv2dStaticSamePadding(
+            528, 528, kernel_size=(3, 3), stride=(1, 1), groups=528, bias=False
+            (static_padding): ZeroPad2d(padding=(1, 1, 1, 1), value=0.0)
+          )
+          (_bn1): BatchNorm2d(528, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_se_reduce): Conv2dStaticSamePadding(
+            528, 22, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_se_expand): Conv2dStaticSamePadding(
+            22, 528, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_project_conv): Conv2dStaticSamePadding(
+            528, 88, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn2): BatchNorm2d(88, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_swish): MemoryEfficientSwish()
+        )
+        (11): MBConvBlock(
+          (_expand_conv): Conv2dStaticSamePadding(
+            88, 528, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn0): BatchNorm2d(528, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_depthwise_conv): Conv2dStaticSamePadding(
+            528, 528, kernel_size=(3, 3), stride=(1, 1), groups=528, bias=False
+            (static_padding): ZeroPad2d(padding=(1, 1, 1, 1), value=0.0)
+          )
+          (_bn1): BatchNorm2d(528, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_se_reduce): Conv2dStaticSamePadding(
+            528, 22, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_se_expand): Conv2dStaticSamePadding(
+            22, 528, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_project_conv): Conv2dStaticSamePadding(
+            528, 88, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn2): BatchNorm2d(88, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_swish): MemoryEfficientSwish()
+        )
+        (12): MBConvBlock(
+          (_expand_conv): Conv2dStaticSamePadding(
+            88, 528, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn0): BatchNorm2d(528, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_depthwise_conv): Conv2dStaticSamePadding(
+            528, 528, kernel_size=(5, 5), stride=[1, 1], groups=528, bias=False
+            (static_padding): ZeroPad2d(padding=(2, 2, 2, 2), value=0.0)
+          )
+          (_bn1): BatchNorm2d(528, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_se_reduce): Conv2dStaticSamePadding(
+            528, 22, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_se_expand): Conv2dStaticSamePadding(
+            22, 528, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_project_conv): Conv2dStaticSamePadding(
+            528, 120, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn2): BatchNorm2d(120, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_swish): MemoryEfficientSwish()
+        )
+        (13): MBConvBlock(
+          (_expand_conv): Conv2dStaticSamePadding(
+            120, 720, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn0): BatchNorm2d(720, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_depthwise_conv): Conv2dStaticSamePadding(
+            720, 720, kernel_size=(5, 5), stride=(1, 1), groups=720, bias=False
+            (static_padding): ZeroPad2d(padding=(2, 2, 2, 2), value=0.0)
+          )
+          (_bn1): BatchNorm2d(720, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_se_reduce): Conv2dStaticSamePadding(
+            720, 30, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_se_expand): Conv2dStaticSamePadding(
+            30, 720, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_project_conv): Conv2dStaticSamePadding(
+            720, 120, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn2): BatchNorm2d(120, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_swish): MemoryEfficientSwish()
+        )
+        (14): MBConvBlock(
+          (_expand_conv): Conv2dStaticSamePadding(
+            120, 720, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn0): BatchNorm2d(720, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_depthwise_conv): Conv2dStaticSamePadding(
+            720, 720, kernel_size=(5, 5), stride=(1, 1), groups=720, bias=False
+            (static_padding): ZeroPad2d(padding=(2, 2, 2, 2), value=0.0)
+          )
+          (_bn1): BatchNorm2d(720, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_se_reduce): Conv2dStaticSamePadding(
+            720, 30, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_se_expand): Conv2dStaticSamePadding(
+            30, 720, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_project_conv): Conv2dStaticSamePadding(
+            720, 120, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn2): BatchNorm2d(120, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_swish): MemoryEfficientSwish()
+        )
+        (15): MBConvBlock(
+          (_expand_conv): Conv2dStaticSamePadding(
+            120, 720, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn0): BatchNorm2d(720, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_depthwise_conv): Conv2dStaticSamePadding(
+            720, 720, kernel_size=(5, 5), stride=(1, 1), groups=720, bias=False
+            (static_padding): ZeroPad2d(padding=(2, 2, 2, 2), value=0.0)
+          )
+          (_bn1): BatchNorm2d(720, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_se_reduce): Conv2dStaticSamePadding(
+            720, 30, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_se_expand): Conv2dStaticSamePadding(
+            30, 720, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_project_conv): Conv2dStaticSamePadding(
+            720, 120, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn2): BatchNorm2d(120, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_swish): MemoryEfficientSwish()
+        )
+        (16): MBConvBlock(
+          (_expand_conv): Conv2dStaticSamePadding(
+            120, 720, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn0): BatchNorm2d(720, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_depthwise_conv): Conv2dStaticSamePadding(
+            720, 720, kernel_size=(5, 5), stride=[2, 2], groups=720, bias=False
+            (static_padding): ZeroPad2d(padding=(2, 2, 2, 2), value=0.0)
+          )
+          (_bn1): BatchNorm2d(720, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_se_reduce): Conv2dStaticSamePadding(
+            720, 30, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_se_expand): Conv2dStaticSamePadding(
+            30, 720, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_project_conv): Conv2dStaticSamePadding(
+            720, 208, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn2): BatchNorm2d(208, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_swish): MemoryEfficientSwish()
+        )
+        (17): MBConvBlock(
+          (_expand_conv): Conv2dStaticSamePadding(
+            208, 1248, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn0): BatchNorm2d(1248, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_depthwise_conv): Conv2dStaticSamePadding(
+            1248, 1248, kernel_size=(5, 5), stride=(1, 1), groups=1248, bias=False
+            (static_padding): ZeroPad2d(padding=(2, 2, 2, 2), value=0.0)
+          )
+          (_bn1): BatchNorm2d(1248, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_se_reduce): Conv2dStaticSamePadding(
+            1248, 52, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_se_expand): Conv2dStaticSamePadding(
+            52, 1248, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_project_conv): Conv2dStaticSamePadding(
+            1248, 208, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn2): BatchNorm2d(208, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_swish): MemoryEfficientSwish()
+        )
+        (18): MBConvBlock(
+          (_expand_conv): Conv2dStaticSamePadding(
+            208, 1248, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn0): BatchNorm2d(1248, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_depthwise_conv): Conv2dStaticSamePadding(
+            1248, 1248, kernel_size=(5, 5), stride=(1, 1), groups=1248, bias=False
+            (static_padding): ZeroPad2d(padding=(2, 2, 2, 2), value=0.0)
+          )
+          (_bn1): BatchNorm2d(1248, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_se_reduce): Conv2dStaticSamePadding(
+            1248, 52, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_se_expand): Conv2dStaticSamePadding(
+            52, 1248, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_project_conv): Conv2dStaticSamePadding(
+            1248, 208, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn2): BatchNorm2d(208, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_swish): MemoryEfficientSwish()
+        )
+        (19): MBConvBlock(
+          (_expand_conv): Conv2dStaticSamePadding(
+            208, 1248, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn0): BatchNorm2d(1248, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_depthwise_conv): Conv2dStaticSamePadding(
+            1248, 1248, kernel_size=(5, 5), stride=(1, 1), groups=1248, bias=False
+            (static_padding): ZeroPad2d(padding=(2, 2, 2, 2), value=0.0)
+          )
+          (_bn1): BatchNorm2d(1248, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_se_reduce): Conv2dStaticSamePadding(
+            1248, 52, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_se_expand): Conv2dStaticSamePadding(
+            52, 1248, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_project_conv): Conv2dStaticSamePadding(
+            1248, 208, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn2): BatchNorm2d(208, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_swish): MemoryEfficientSwish()
+        )
+        (20): MBConvBlock(
+          (_expand_conv): Conv2dStaticSamePadding(
+            208, 1248, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn0): BatchNorm2d(1248, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_depthwise_conv): Conv2dStaticSamePadding(
+            1248, 1248, kernel_size=(5, 5), stride=(1, 1), groups=1248, bias=False
+            (static_padding): ZeroPad2d(padding=(2, 2, 2, 2), value=0.0)
+          )
+          (_bn1): BatchNorm2d(1248, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_se_reduce): Conv2dStaticSamePadding(
+            1248, 52, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_se_expand): Conv2dStaticSamePadding(
+            52, 1248, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_project_conv): Conv2dStaticSamePadding(
+            1248, 208, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn2): BatchNorm2d(208, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_swish): MemoryEfficientSwish()
+        )
+        (21): MBConvBlock(
+          (_expand_conv): Conv2dStaticSamePadding(
+            208, 1248, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn0): BatchNorm2d(1248, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_depthwise_conv): Conv2dStaticSamePadding(
+            1248, 1248, kernel_size=(3, 3), stride=[1, 1], groups=1248, bias=False
+            (static_padding): ZeroPad2d(padding=(1, 1, 1, 1), value=0.0)
+          )
+          (_bn1): BatchNorm2d(1248, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_se_reduce): Conv2dStaticSamePadding(
+            1248, 52, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_se_expand): Conv2dStaticSamePadding(
+            52, 1248, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_project_conv): Conv2dStaticSamePadding(
+            1248, 352, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn2): BatchNorm2d(352, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_swish): MemoryEfficientSwish()
+        )
+        (22): MBConvBlock(
+          (_expand_conv): Conv2dStaticSamePadding(
+            352, 2112, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn0): BatchNorm2d(2112, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_depthwise_conv): Conv2dStaticSamePadding(
+            2112, 2112, kernel_size=(3, 3), stride=(1, 1), groups=2112, bias=False
+            (static_padding): ZeroPad2d(padding=(1, 1, 1, 1), value=0.0)
+          )
+          (_bn1): BatchNorm2d(2112, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_se_reduce): Conv2dStaticSamePadding(
+            2112, 88, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_se_expand): Conv2dStaticSamePadding(
+            88, 2112, kernel_size=(1, 1), stride=(1, 1)
+            (static_padding): Identity()
+          )
+          (_project_conv): Conv2dStaticSamePadding(
+            2112, 352, kernel_size=(1, 1), stride=(1, 1), bias=False
+            (static_padding): Identity()
+          )
+          (_bn2): BatchNorm2d(352, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+          (_swish): MemoryEfficientSwish()
+        )
+      )
+      (_conv_head): Conv2dStaticSamePadding(
+        352, 1408, kernel_size=(1, 1), stride=(1, 1), bias=False
+        (static_padding): Identity()
+      )
+      (_bn1): BatchNorm2d(1408, eps=0.001, momentum=0.010000000000000009, affine=True, track_running_stats=True)
+      (_avg_pooling): AdaptiveAvgPool2d(output_size=1)
+      (_dropout): Dropout(p=0.3, inplace=False)
+      (_fc): Linear(in_features=1408, out_features=1408, bias=False)
+      (_swish): MemoryEfficientSwish()
+    )
+    (fc): Identity()
+  )
+  (projector): Sequential(
+    (0): Linear(in_features=1408, out_features=1408, bias=False)
+    (1): SiLU()
+    (2): Linear(in_features=1408, out_features=64, bias=False)
+  )
+)
+Epoch [0/10]	 Loss: 3.2921608289082847	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8106848001480103	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.653603116671244	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.555481513341268	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4690006971359253	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4361926317214966	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.4137319723765054	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3728469610214233	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.338220953941345	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.342423995335897	 lr: 0.0003
+------Evaluation-------
+seed :  24
+============T1 HB===========
+acc : 0.535978835978836
+precision: 0.3533333333333334
+recall: 0.32
+f1: 0.33035353535353534
+============T2===========
+acc : 0.4986772486772487
+precision: 0.3383760683760684
+recall: 0.3
+f1: 0.30292290089772933
+============out===========
+acc : 0.6592592592592592
+precision: 0.5313636363636364
+recall: 0.4800000000000001
+f1: 0.4942857142857142
+(138, 1408) (138,)
+2021-07-15 10:02:51.004088: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.268526871999105	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.816352923711141	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.7150283654530845	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5759658416112265	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.5103014707565308	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.445773164431254	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.423863689104716	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.392349123954773	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.400489012400309	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3284756342569985	 lr: 0.0003
+------Evaluation-------
+seed :  53
+============T1 HB===========
+acc : 0.5365079365079366
+precision: 0.3473992673992674
+recall: 0.34
+f1: 0.3403311347422264
+============T2===========
+acc : 0.4989417989417989
+precision: 0.27944444444444444
+recall: 0.26
+f1: 0.26877192982456144
+============out===========
+acc : 0.6444444444444445
+precision: 0.48888888888888893
+recall: 0.44000000000000006
+f1: 0.4618421052631579
+(138, 1408) (138,)
+2021-07-15 10:03:11.254539: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2393702268600464	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8804813623428345	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.676417509714762	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5727698802948	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.514153560002645	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.430817723274231	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3828655083974204	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3233292500178018	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3095365365346274	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.286794344584147	 lr: 0.0003
+------Evaluation-------
+seed :  30
+============T1 HB===========
+acc : 0.4698412698412698
+precision: 0.25857142857142856
+recall: 0.24000000000000005
+f1: 0.24696375519904934
+============T2===========
+acc : 0.5280423280423281
+precision: 0.3146320346320346
+recall: 0.28
+f1: 0.2884067566420508
+============out===========
+acc : 0.5798941798941799
+precision: 0.4162698412698413
+recall: 0.38
+f1: 0.3941927010038465
+(138, 1408) (138,)
+2021-07-15 10:03:31.368562: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2510745525360107	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8275221586227417	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6392104625701904	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5644061962763467	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.429965853691101	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.423796772956848	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3980940183003745	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3219964504241943	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.320226867993673	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.291030208269755	 lr: 0.0003
+------Evaluation-------
+seed :  22
+============T1 HB===========
+acc : 0.5293650793650794
+precision: 0.35782599753187994
+recall: 0.4
+f1: 0.3649930986887508
+============T2===========
+acc : 0.5359788359788359
+precision: 0.32833333333333337
+recall: 0.26
+f1: 0.2866666666666667
+============out===========
+acc : 0.657936507936508
+precision: 0.5334415584415584
+recall: 0.4999999999999999
+f1: 0.5114783393421165
+(138, 1408) (138,)
+2021-07-15 10:03:51.519535: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.189449985822042	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8159772952397666	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6345175902048745	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5083595514297485	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4671184619267783	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.419508934020996	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3825573921203613	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3595739205678306	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3327879905700684	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.2854061921437583	 lr: 0.0003
+------Evaluation-------
+seed :  56
+============T1 HB===========
+acc : 0.6076719576719577
+precision: 0.4832600732600733
+recall: 0.44000000000000006
+f1: 0.449374564054871
+============T2===========
+acc : 0.5058201058201057
+precision: 0.31414141414141417
+recall: 0.24
+f1: 0.26331738437001595
+============out===========
+acc : 0.6007936507936508
+precision: 0.46428571428571425
+recall: 0.42000000000000004
+f1: 0.4355317884729649
+(138, 1408) (138,)
+2021-07-15 10:04:11.679016: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.198172688484192	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.7831170558929443	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.639467199643453	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5187615950902305	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.468092759450277	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.42349112033844	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3770875930786133	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.347171425819397	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.2780134677886963	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3020605643590293	 lr: 0.0003
+------Evaluation-------
+seed :  16
+============T1 HB===========
+acc : 0.5793650793650793
+precision: 0.4077350427350427
+recall: 0.4
+f1: 0.39590134757182815
+============T2===========
+acc : 0.47751322751322745
+precision: 0.25
+recall: 0.24
+f1: 0.24295587453482193
+============out===========
+acc : 0.6452380952380953
+precision: 0.5111111111111111
+recall: 0.5
+f1: 0.5038277511961723
+(138, 1408) (138,)
+2021-07-15 10:04:31.959414: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2430399656295776	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.834831953048706	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.643224080403646	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.543027917544047	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.462965806325277	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.391591231028239	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3644089698791504	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3556544383366904	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3057554165522256	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.293111562728882	 lr: 0.0003
+------Evaluation-------
+seed :  5
+============T1 HB===========
+acc : 0.4923280423280422
+precision: 0.2993001443001443
+recall: 0.32
+f1: 0.30581453634085215
+============T2===========
+acc : 0.5505291005291004
+precision: 0.36962481962481963
+recall: 0.33999999999999997
+f1: 0.34990953319126694
+============out===========
+acc : 0.6373015873015873
+precision: 0.47285714285714275
+recall: 0.42000000000000004
+f1: 0.43014005602240896
+(138, 1408) (138,)
+2021-07-15 10:04:52.109290: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.210320989290873	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8114623626073203	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.675763805707296	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5868584712346396	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4783355792363486	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.462366739908854	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.4028842051823935	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3815787633260093	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3552204370498657	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.321754972139994	 lr: 0.0003
+------Evaluation-------
+seed :  30
+============T1 HB===========
+acc : 0.4703703703703703
+precision: 0.28551892551892555
+recall: 0.27999999999999997
+f1: 0.2798068992523159
+============T2===========
+acc : 0.5359788359788359
+precision: 0.34888888888888886
+recall: 0.32
+f1: 0.3242105263157895
+============out===========
+acc : 0.6238095238095238
+precision: 0.4809523809523809
+recall: 0.4
+f1: 0.4322755417956657
+(138, 1408) (138,)
+2021-07-15 10:05:12.359732: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2729814847310386	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.796969930330912	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6181941827138266	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5621209144592285	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.479986310005188	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4561727046966553	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.424862504005432	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3285313049952188	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3080108165740967	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.2978549798329673	 lr: 0.0003
+------Evaluation-------
+seed :  28
+============T1 HB===========
+acc : 0.5642857142857143
+precision: 0.40619047619047616
+recall: 0.32
+f1: 0.34825311942959
+============T2===========
+acc : 0.543121693121693
+precision: 0.34170274170274173
+recall: 0.34
+f1: 0.338331568672126
+============out===========
+acc : 0.6373015873015874
+precision: 0.5002020202020202
+recall: 0.48
+f1: 0.48843776106933995
+(138, 1408) (138,)
+2021-07-15 10:05:32.481417: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2440768480300903	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.838639418284098	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.662218610445658	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5432979663213096	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.499908447265625	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.3929612239201865	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3819562196731567	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3651927709579468	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.315004746119181	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.2924349705378213	 lr: 0.0003
+------Evaluation-------
+seed :  18
+============T1 HB===========
+acc : 0.5066137566137566
+precision: 0.352005772005772
+recall: 0.38
+f1: 0.35794161875276426
+============T2===========
+acc : 0.521957671957672
+precision: 0.32073260073260074
+recall: 0.3
+f1: 0.30401534526854224
+============out===========
+acc : 0.593915343915344
+precision: 0.4023088023088023
+recall: 0.38
+f1: 0.3863113666519239
+(138, 1408) (138,)
+2021-07-15 10:05:52.639698: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.202893296877543	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8147379557291665	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6430379152297974	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5529010693232217	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4575621684392295	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4160779317220054	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.382687290509542	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3296687602996826	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.299350619316101	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.2803743282953897	 lr: 0.0003
+------Evaluation-------
+seed :  42
+============T1 HB===========
+acc : 0.4933862433862434
+precision: 0.2558241758241758
+recall: 0.24000000000000005
+f1: 0.24368286445012793
+============T2===========
+acc : 0.557936507936508
+precision: 0.3466666666666667
+recall: 0.3
+f1: 0.31815789473684214
+============out===========
+acc : 0.5275132275132275
+precision: 0.35844155844155845
+recall: 0.33999999999999997
+f1: 0.3463002425850723
+(138, 1408) (138,)
+2021-07-15 10:06:12.776071: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.208752234776815	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8654120365778604	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.611290216445923	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5335264603296914	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4555683930714927	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4342837731043496	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.392827788988749	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3522061109542847	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.2951324780782065	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.297621568044027	 lr: 0.0003
+------Evaluation-------
+seed :  61
+============T1 HB===========
+acc : 0.5656084656084657
+precision: 0.3984343434343434
+recall: 0.4
+f1: 0.39711095921622236
+============T2===========
+acc : 0.49285714285714277
+precision: 0.2893939393939394
+recall: 0.30000000000000004
+f1: 0.29162109820004556
+============out===========
+acc : 0.6082010582010582
+precision: 0.4367521367521367
+recall: 0.38000000000000006
+f1: 0.3924269983766551
+(138, 1408) (138,)
+2021-07-15 10:06:33.058009: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2221826712290444	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.7662285963694253	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.62119726339976	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.4936729669570923	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4139662981033325	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.415605107943217	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.361546754837036	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.39019238948822	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.313694874445597	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.296407620112101	 lr: 0.0003
+------Evaluation-------
+seed :  7
+============T1 HB===========
+acc : 0.5722222222222222
+precision: 0.4049062049062049
+recall: 0.38
+f1: 0.3893852277753206
+============T2===========
+acc : 0.5362433862433862
+precision: 0.32626984126984127
+recall: 0.26
+f1: 0.2870209838321294
+============out===========
+acc : 0.6156084656084655
+precision: 0.44473304473304476
+recall: 0.44000000000000006
+f1: 0.43905306939362665
+(138, 1408) (138,)
+2021-07-15 10:06:53.176136: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2717403570810952	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.80015238126119	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.608927011489868	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5653775930404663	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4725499947865806	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.437208970387777	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.435198704401652	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3569939533869424	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.359842578570048	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3488167921702066	 lr: 0.0003
+------Evaluation-------
+seed :  28
+============T1 HB===========
+acc : 0.5428571428571429
+precision: 0.3673304473304474
+recall: 0.34
+f1: 0.3509892378003833
+============T2===========
+acc : 0.5796296296296296
+precision: 0.4056410256410256
+recall: 0.36
+f1: 0.36929732103645146
+============out===========
+acc : 0.5359788359788359
+precision: 0.34833333333333333
+recall: 0.32
+f1: 0.3329824561403509
+(138, 1408) (138,)
+2021-07-15 10:07:13.362093: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.192180315653483	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8393213351567588	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6590134700139365	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5349662701288858	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4817749659220376	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.441867470741272	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.4099870522816977	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3979020516077676	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.336471199989319	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3069358269373574	 lr: 0.0003
+------Evaluation-------
+seed :  45
+============T1 HB===========
+acc : 0.551058201058201
+precision: 0.39963369963369966
+recall: 0.38
+f1: 0.38076232781442093
+============T2===========
+acc : 0.47830687830687835
+precision: 0.24564102564102566
+recall: 0.28
+f1: 0.2572367149758454
+============out===========
+acc : 0.6735449735449736
+precision: 0.5342857142857141
+recall: 0.44000000000000006
+f1: 0.4712026673017385
+(138, 1408) (138,)
+2021-07-15 10:07:33.696197: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.255033254623413	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8373436530431113	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6506330172220864	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5435678561528525	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.488519787788391	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4222814639409385	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.4322458108266196	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.376787463823954	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.368972738583883	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3449928760528564	 lr: 0.0003
+------Evaluation-------
+seed :  24
+============T1 HB===========
+acc : 0.5203703703703704
+precision: 0.3512332112332113
+recall: 0.28
+f1: 0.3042069367792884
+============T2===========
+acc : 0.55
+precision: 0.36035353535353537
+recall: 0.34
+f1: 0.34845446950710113
+============out===========
+acc : 0.6584656084656084
+precision: 0.5194444444444445
+recall: 0.44000000000000006
+f1: 0.4686469962785752
+(138, 1408) (138,)
+2021-07-15 10:07:53.826892: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2501418590545654	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8673805793126426	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.641106605529785	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.609959443410238	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.49566117922465	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.454675475756327	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.416264057159424	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.363541523615519	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3350768089294434	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3152012825012207	 lr: 0.0003
+------Evaluation-------
+seed :  31
+============T1 HB===========
+acc : 0.5571428571428572
+precision: 0.40909090909090906
+recall: 0.34
+f1: 0.3555194805194805
+============T2===========
+acc : 0.5224867724867724
+precision: 0.3448989898989899
+recall: 0.38
+f1: 0.3571528822055138
+============out===========
+acc : 0.5857142857142857
+precision: 0.40853535353535353
+recall: 0.36
+f1: 0.37639097744360894
+(138, 1408) (138,)
+2021-07-15 10:08:14.020763: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2207751671473184	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.7971301873524985	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6344250043233237	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.535106062889099	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4807645877202353	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4623850186665854	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.4292710622151694	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3806710243225098	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3646098375320435	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3180721203486123	 lr: 0.0003
+------Evaluation-------
+seed :  37
+============T1 HB===========
+acc : 0.45582010582010585
+precision: 0.22333333333333333
+recall: 0.18
+f1: 0.19760233918128653
+============T2===========
+acc : 0.5502645502645503
+precision: 0.3416161616161616
+recall: 0.3
+f1: 0.31341687552213876
+============out===========
+acc : 0.5862433862433862
+precision: 0.4084126984126984
+recall: 0.38
+f1: 0.38330202958376336
+(138, 1408) (138,)
+2021-07-15 10:08:34.182126: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.253945787747701	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.829966902732849	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6113555828730264	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5378757317860923	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.438079555829366	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4248534440994263	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.385652263959249	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3695027430852256	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3351067304611206	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3079238335291543	 lr: 0.0003
+------Evaluation-------
+seed :  52
+============T1 HB===========
+acc : 0.46269841269841266
+precision: 0.2831623931623931
+recall: 0.3
+f1: 0.29040565841481175
+============T2===========
+acc : 0.521957671957672
+precision: 0.30714285714285716
+recall: 0.26
+f1: 0.26772704419763244
+============out===========
+acc : 0.6309523809523808
+precision: 0.4966666666666667
+recall: 0.48
+f1: 0.4866985645933014
+(138, 1408) (138,)
+2021-07-15 10:08:54.417741: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.213243762652079	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.784496267636617	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.5777405500411987	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.51695708433787	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.476460099220276	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4052615960439048	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3599319458007812	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3720059792200723	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3197105725606284	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.2945372660954795	 lr: 0.0003
+------Evaluation-------
+seed :  17
+============T1 HB===========
+acc : 0.5587301587301587
+precision: 0.37377622377622377
+recall: 0.38
+f1: 0.3659075224292615
+============T2===========
+acc : 0.5431216931216931
+precision: 0.3283116883116883
+recall: 0.28
+f1: 0.29669467787114845
+============out===========
+acc : 0.6005291005291005
+precision: 0.46007326007326005
+recall: 0.42000000000000004
+f1: 0.42821253319301505
+(138, 1408) (138,)
+2021-07-15 10:09:14.582426: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2459131479263306	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.802222728729248	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.619203209877014	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5215466022491455	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.432484269142151	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4319934844970703	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3733600775400796	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.373850425084432	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3153258562088013	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3244219621022544	 lr: 0.0003
+------Evaluation-------
+seed :  41
+============T1 HB===========
+acc : 0.5137566137566137
+precision: 0.3373737373737373
+recall: 0.34
+f1: 0.3373129794182425
+============T2===========
+acc : 0.5645502645502646
+precision: 0.385
+recall: 0.32
+f1: 0.3488888888888889
+============out===========
+acc : 0.5859788359788359
+precision: 0.4222222222222222
+recall: 0.44000000000000006
+f1: 0.4271929824561404
+(138, 1408) (138,)
+2021-07-15 10:09:34.747550: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.217609484990438	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.806831876436869	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6409149964650473	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.476286252339681	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4646719296773276	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4223461151123047	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3552001317342124	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.332966407140096	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.299047350883484	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.2841753164927163	 lr: 0.0003
+------Evaluation-------
+seed :  45
+============T1 HB===========
+acc : 0.5722222222222222
+precision: 0.4355644355644356
+recall: 0.4
+f1: 0.4101814638899038
+============T2===========
+acc : 0.5584656084656084
+precision: 0.39486291486291486
+recall: 0.38
+f1: 0.3785298540468819
+============out===========
+acc : 0.587037037037037
+precision: 0.4392857142857142
+recall: 0.4
+f1: 0.4073677956030897
+(138, 1408) (138,)
+2021-07-15 10:09:54.978203: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2087169090906777	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8096201419830322	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6359697182973227	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.527234673500061	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.445186495780945	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.400057236353556	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.361154476801554	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3277612924575806	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3121890226999917	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3177836736043296	 lr: 0.0003
+------Evaluation-------
+seed :  55
+============T1 HB===========
+acc : 0.4931216931216931
+precision: 0.31082251082251083
+recall: 0.32
+f1: 0.30904534062428796
+============T2===========
+acc : 0.6373015873015873
+precision: 0.5287698412698412
+recall: 0.4600000000000001
+f1: 0.47637995819110374
+============out===========
+acc : 0.5936507936507937
+precision: 0.43701298701298696
+recall: 0.34
+f1: 0.3786414565826331
+(138, 1408) (138,)
+2021-07-15 10:10:15.121315: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2418375809987388	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8512130975723267	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.645728429158529	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.506037394205729	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4718527793884277	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.418276786804199	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3966064055760703	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.355958938598633	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.303641359011332	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3056735595067344	 lr: 0.0003
+------Evaluation-------
+seed :  44
+============T1 HB===========
+acc : 0.5582010582010583
+precision: 0.3956349206349207
+recall: 0.36
+f1: 0.37234262125902995
+============T2===========
+acc : 0.6015873015873014
+precision: 0.4347008547008547
+recall: 0.38
+f1: 0.3955530129672006
+============out===========
+acc : 0.5645502645502646
+precision: 0.3983333333333333
+recall: 0.4
+f1: 0.3892424242424242
+(138, 1408) (138,)
+2021-07-15 10:10:35.252509: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.245185653368632	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.837862730026245	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.626345674196879	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.498220443725586	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4439199368158975	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.438875675201416	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.401460369427999	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3125683863957724	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.305013100306193	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.286288777987162	 lr: 0.0003
+------Evaluation-------
+seed :  4
+============T1 HB===========
+acc : 0.5002645502645503
+precision: 0.28993894993895
+recall: 0.3
+f1: 0.29259119666173106
+============T2===========
+acc : 0.5283068783068783
+precision: 0.32987012987012987
+recall: 0.3
+f1: 0.3127229839304143
+============out===========
+acc : 0.6597883597883598
+precision: 0.5514285714285714
+recall: 0.4600000000000001
+f1: 0.4989542483660131
+(138, 1408) (138,)
+2021-07-15 10:10:55.445951: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.209869146347046	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.82853631178538	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6349050203959146	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5531662702560425	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.460993925730387	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.402686516443888	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.4132065773010254	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.372855544090271	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3432053327560425	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3067516883214316	 lr: 0.0003
+------Evaluation-------
+seed :  41
+============T1 HB===========
+acc : 0.46269841269841266
+precision: 0.26
+recall: 0.26
+f1: 0.2561578947368421
+============T2===========
+acc : 0.5222222222222223
+precision: 0.28095238095238095
+recall: 0.21999999999999997
+f1: 0.2439422084623323
+============out===========
+acc : 0.6005291005291006
+precision: 0.4391452991452992
+recall: 0.45999999999999996
+f1: 0.4380559369438088
+(138, 1408) (138,)
+2021-07-15 10:11:15.590095: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.224812467892965	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.777494033177694	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6285880406697593	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.507278641064962	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4586990674336753	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.3854528665542603	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.362336277961731	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3519475857416787	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.309367577234904	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.2922212282816568	 lr: 0.0003
+------Evaluation-------
+seed :  26
+============T1 HB===========
+acc : 0.5650793650793651
+precision: 0.3980952380952381
+recall: 0.36000000000000004
+f1: 0.3711111111111111
+============T2===========
+acc : 0.485978835978836
+precision: 0.26987179487179486
+recall: 0.26
+f1: 0.26254767353165526
+============out===========
+acc : 0.6306878306878307
+precision: 0.4818181818181818
+recall: 0.52
+f1: 0.49908863066757797
+(138, 1408) (138,)
+2021-07-15 10:11:35.747621: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2343589464823403	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8323736588160195	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.597343842188517	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5535330772399902	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4959686994552612	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.410137891769409	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.411653240521749	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.363015572230021	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3540885051091514	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.2956335147221885	 lr: 0.0003
+------Evaluation-------
+seed :  26
+============T1 HB===========
+acc : 0.4992063492063492
+precision: 0.3305844155844156
+recall: 0.34
+f1: 0.33285714285714285
+============T2===========
+acc : 0.6010582010582011
+precision: 0.4455905205905205
+recall: 0.42000000000000004
+f1: 0.4258599397043333
+============out===========
+acc : 0.5354497354497355
+precision: 0.35277777777777775
+recall: 0.32
+f1: 0.3335459861775651
+(138, 1408) (138,)
+2021-07-15 10:11:55.909436: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2965147892634072	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.839528282483419	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.643431067466736	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5499252875645957	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4419061740239463	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4249279499053955	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3756519556045532	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.375476598739624	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3275197744369507	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.289306402206421	 lr: 0.0003
+------Evaluation-------
+seed :  4
+============T1 HB===========
+acc : 0.5716931216931217
+precision: 0.42439393939393943
+recall: 0.4
+f1: 0.4006349206349206
+============T2===========
+acc : 0.5214285714285715
+precision: 0.33683982683982683
+recall: 0.32
+f1: 0.3249520414226297
+============out===========
+acc : 0.5571428571428572
+precision: 0.3902564102564102
+recall: 0.4
+f1: 0.3932723112128147
+(138, 1408) (138,)
+2021-07-15 10:12:16.160837: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.311763644218445	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8144462505976358	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.649770140647888	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.535762667655945	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.480299194653829	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4331899881362915	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3939265410105386	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.375962416330973	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3253583113352456	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3059528271357217	 lr: 0.0003
+------Evaluation-------
+seed :  52
+============T1 HB===========
+acc : 0.46269841269841266
+precision: 0.24025974025974026
+recall: 0.22000000000000003
+f1: 0.22773109243697479
+============T2===========
+acc : 0.514021164021164
+precision: 0.28692307692307695
+recall: 0.26
+f1: 0.25864483342744216
+============out===========
+acc : 0.5788359788359788
+precision: 0.40646464646464653
+recall: 0.36
+f1: 0.37833751044277364
+(138, 1408) (138,)
+2021-07-15 10:12:36.401036: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.285082379976908	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8314210176467896	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6467676957448325	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5027101039886475	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4563403526941934	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.3850138982137046	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.380008856455485	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3538610140482583	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.332596222559611	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3143981297810874	 lr: 0.0003
+------Evaluation-------
+seed :  64
+============T1 HB===========
+acc : 0.5362433862433862
+precision: 0.377031302031302
+recall: 0.4
+f1: 0.38040189989039097
+============T2===========
+acc : 0.5793650793650793
+precision: 0.4093650793650793
+recall: 0.42000000000000004
+f1: 0.4112693498452013
+============out===========
+acc : 0.6227513227513227
+precision: 0.4536796536796537
+recall: 0.45999999999999996
+f1: 0.4498535777947543
+(138, 1408) (138,)
+2021-07-15 10:12:56.632708: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2524987856547036	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8317464192708335	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.7155625422795615	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5367558797200522	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4949126640955606	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.438857992490133	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3938436110814414	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3850541512171426	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3027228514353433	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.271918535232544	 lr: 0.0003
+------Evaluation-------
+seed :  9
+============T1 HB===========
+acc : 0.5288359788359789
+precision: 0.34606060606060607
+recall: 0.3
+f1: 0.3175062656641604
+============T2===========
+acc : 0.5224867724867726
+precision: 0.35016317016317017
+recall: 0.32
+f1: 0.3274643129563038
+============out===========
+acc : 0.6087301587301587
+precision: 0.47111111111111115
+recall: 0.52
+f1: 0.4903540669856459
+(138, 1408) (138,)
+2021-07-15 10:13:16.788666: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2705416282018027	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.848244071006775	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.712614138921102	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.562146266301473	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4826629161834717	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.417948047320048	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.418933351834615	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.360933264096578	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.312469204266866	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.286881764729818	 lr: 0.0003
+------Evaluation-------
+seed :  13
+============T1 HB===========
+acc : 0.5785714285714286
+precision: 0.45820512820512815
+recall: 0.36
+f1: 0.3770127698388568
+============T2===========
+acc : 0.5433862433862433
+precision: 0.3771828171828172
+recall: 0.36000000000000004
+f1: 0.3635765030649941
+============out===========
+acc : 0.5351851851851852
+precision: 0.3466666666666667
+recall: 0.32
+f1: 0.31933333333333336
+(138, 1408) (138,)
+2021-07-15 10:13:36.965830: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.220025420188904	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8390801350275674	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6436166763305664	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.557303229967753	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4736024936040244	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4375043312708535	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.405491590499878	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3506503899892173	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3434553941090903	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3106624285380044	 lr: 0.0003
+------Evaluation-------
+seed :  2
+============T1 HB===========
+acc : 0.5208994708994709
+precision: 0.3473809523809524
+recall: 0.33999999999999997
+f1: 0.33660843731431966
+============T2===========
+acc : 0.5582010582010583
+precision: 0.34904761904761905
+recall: 0.26
+f1: 0.288959805244635
+============out===========
+acc : 0.5576719576719578
+precision: 0.42153846153846153
+recall: 0.44000000000000006
+f1: 0.4218729096989967
+(138, 1408) (138,)
+2021-07-15 10:13:57.259983: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2449134588241577	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.792368451754252	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.591259797414144	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.4979378382364907	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4544883171717324	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4019563595453897	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3911768595377603	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3461318413416543	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3294511636098227	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.318348010381063	 lr: 0.0003
+------Evaluation-------
+seed :  38
+============T1 HB===========
+acc : 0.45052910052910045
+precision: 0.22638694638694642
+recall: 0.24000000000000005
+f1: 0.23177073117576552
+============T2===========
+acc : 0.5873015873015873
+precision: 0.439047619047619
+recall: 0.38
+f1: 0.3968104575163398
+============out===========
+acc : 0.5574074074074075
+precision: 0.3434065934065934
+recall: 0.36
+f1: 0.34118357487922707
+(138, 1408) (138,)
+2021-07-15 10:14:17.474891: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2111223936080933	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.823911945025126	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.5951276222864785	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.533614675203959	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4738401571909585	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4382391373316445	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.346832553545634	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3621217409769693	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.332809249560038	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.2978238662083945	 lr: 0.0003
+------Evaluation-------
+seed :  28
+============T1 HB===========
+acc : 0.5645502645502646
+precision: 0.4391142191142191
+recall: 0.38
+f1: 0.3946278740329084
+============T2===========
+acc : 0.5865079365079365
+precision: 0.41216561216561215
+recall: 0.4
+f1: 0.3997871917645777
+============out===========
+acc : 0.6444444444444445
+precision: 0.5194805194805194
+recall: 0.44000000000000006
+f1: 0.4723622782446312
+(138, 1408) (138,)
+2021-07-15 10:14:37.693239: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2426761786142984	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8172066609064736	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.668726642926534	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5459726254145303	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.540436546007792	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.428069233894348	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.4027161995569863	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3850961128870645	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3394994735717773	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.2922996282577515	 lr: 0.0003
+------Evaluation-------
+seed :  24
+============T1 HB===========
+acc : 0.47169312169312166
+precision: 0.3036907536907537
+recall: 0.34
+f1: 0.31921899610686794
+============T2===========
+acc : 0.5357142857142857
+precision: 0.3433333333333333
+recall: 0.32
+f1: 0.33076023391812864
+============out===========
+acc : 0.6158730158730159
+precision: 0.4745454545454546
+recall: 0.5
+f1: 0.48666666666666664
+(138, 1408) (138,)
+2021-07-15 10:14:57.968314: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.145378828048706	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.805812120437622	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6508050759633384	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5650280316670737	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4815330505371094	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.457527200380961	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.384333928426107	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.372429092725118	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.325121521949768	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.2921351989110312	 lr: 0.0003
+------Evaluation-------
+seed :  50
+============T1 HB===========
+acc : 0.4994708994708995
+precision: 0.3
+recall: 0.27999999999999997
+f1: 0.28947368421052627
+============T2===========
+acc : 0.4486772486772487
+precision: 0.2455982905982906
+recall: 0.26
+f1: 0.2510468529690498
+============out===========
+acc : 0.6304232804232804
+precision: 0.4110256410256411
+recall: 0.38
+f1: 0.3815371102327624
+(138, 1408) (138,)
+2021-07-15 10:15:18.222642: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2412657340367637	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.840244770050049	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.640421907107035	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.549896518389384	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4736058712005615	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.385802427927653	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3599666754404702	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3462526003519693	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.2818448543548584	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.262223243713379	 lr: 0.0003
+------Evaluation-------
+seed :  55
+============T1 HB===========
+acc : 0.5
+precision: 0.283998778998779
+recall: 0.27999999999999997
+f1: 0.279527377694022
+============T2===========
+acc : 0.4703703703703703
+precision: 0.2732867132867133
+recall: 0.32
+f1: 0.29005175983436854
+============out===========
+acc : 0.6161375661375661
+precision: 0.4611111111111111
+recall: 0.48
+f1: 0.466374269005848
+(138, 1408) (138,)
+2021-07-15 10:15:38.444921: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.1731276909510293	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8260690768559775	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6495167016983032	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5379921197891235	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.484298745791117	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.430869221687317	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3964956204096475	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3645677963892617	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3292779127756753	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.305241107940674	 lr: 0.0003
+------Evaluation-------
+seed :  5
+============T1 HB===========
+acc : 0.5722222222222222
+precision: 0.4108225108225108
+recall: 0.38
+f1: 0.39009421950598416
+============T2===========
+acc : 0.6015873015873014
+precision: 0.4401948051948052
+recall: 0.36000000000000004
+f1: 0.3893557422969187
+============out===========
+acc : 0.5653439153439154
+precision: 0.37414529914529915
+recall: 0.34
+f1: 0.35172260361047547
+(138, 1408) (138,)
+2021-07-15 10:15:58.601772: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.21885347366333	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.7970818281173706	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6225165128707886	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5336519479751587	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4793639183044434	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.422635078430176	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.345728357632955	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3705693085988364	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3505893548329673	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.311134934425354	 lr: 0.0003
+------Evaluation-------
+seed :  24
+============T1 HB===========
+acc : 0.4703703703703703
+precision: 0.27431457431457434
+recall: 0.27999999999999997
+f1: 0.2713374688606887
+============T2===========
+acc : 0.6079365079365079
+precision: 0.4872222222222223
+recall: 0.4
+f1: 0.4284529505582137
+============out===========
+acc : 0.5653439153439154
+precision: 0.40435064935064935
+recall: 0.43999999999999995
+f1: 0.41809523809523813
+(138, 1408) (138,)
+2021-07-15 10:16:18.807740: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.218680818875631	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.795581499735514	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6619649728139243	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.52815572420756	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4871873458226523	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4297754764556885	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.4039423068364463	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3658448457717896	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3378721475601196	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3261562983194985	 lr: 0.0003
+------Evaluation-------
+seed :  0
+============T1 HB===========
+acc : 0.5648148148148149
+precision: 0.445021645021645
+recall: 0.28
+f1: 0.3174908424908425
+============T2===========
+acc : 0.5002645502645503
+precision: 0.264069264069264
+recall: 0.21999999999999997
+f1: 0.23794781070322868
+============out===========
+acc : 0.6232804232804233
+precision: 0.4818181818181818
+recall: 0.4
+f1: 0.42936507936507934
+(138, 1408) (138,)
+2021-07-15 10:16:39.098615: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.237533370653788	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.814680894215902	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.663657546043396	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5199273029963174	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4596585432688394	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.381453514099121	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.391918659210205	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3399415413538613	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.326541304588318	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.2946143547693887	 lr: 0.0003
+------Evaluation-------
+seed :  64
+============T1 HB===========
+acc : 0.55
+precision: 0.40174603174603174
+recall: 0.38
+f1: 0.37532163742690056
+============T2===========
+acc : 0.5732804232804234
+precision: 0.4162337662337662
+recall: 0.4
+f1: 0.4031746031746032
+============out===========
+acc : 0.5867724867724868
+precision: 0.4137662337662338
+recall: 0.36
+f1: 0.38177404295051354
+(138, 1408) (138,)
+2021-07-15 10:16:59.357746: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2416173219680786	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.816851019859314	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.666223486264547	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.4954860607783	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4163010517756143	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4374646743138633	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.381393313407898	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3540693521499634	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3218778371810913	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.306605855623881	 lr: 0.0003
+------Evaluation-------
+seed :  37
+============T1 HB===========
+acc : 0.5428571428571429
+precision: 0.381060606060606
+recall: 0.4
+f1: 0.38370284686074163
+============T2===========
+acc : 0.5944444444444443
+precision: 0.4303030303030303
+recall: 0.38
+f1: 0.3992063492063492
+============out===========
+acc : 0.5711640211640212
+precision: 0.40444444444444444
+recall: 0.4
+f1: 0.4006698564593302
+(138, 1408) (138,)
+2021-07-15 10:17:19.613352: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2091921965281167	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.794955253601074	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6213033199310303	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.533334970474243	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4822856982549033	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4238919814427695	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.4048879146575928	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.367416739463806	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.337071339289347	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.328585942586263	 lr: 0.0003
+------Evaluation-------
+seed :  65
+============T1 HB===========
+acc : 0.5571428571428572
+precision: 0.40415584415584416
+recall: 0.38
+f1: 0.3834126984126984
+============T2===========
+acc : 0.5222222222222223
+precision: 0.3511888111888112
+recall: 0.36
+f1: 0.3460455486542443
+============out===========
+acc : 0.6002645502645503
+precision: 0.44836940836940836
+recall: 0.32
+f1: 0.3629780333185906
+(138, 1408) (138,)
+2021-07-15 10:17:39.776692: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.243118246396383	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8358242909113565	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.596211870511373	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.602345863978068	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.5127097368240356	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4553752342859902	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.4255529244740806	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3926755587259927	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3712766965230307	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3789453903834024	 lr: 0.0003
+------Evaluation-------
+seed :  9
+============T1 HB===========
+acc : 0.5727513227513228
+precision: 0.40714285714285714
+recall: 0.38
+f1: 0.38847296494355316
+============T2===========
+acc : 0.46296296296296297
+precision: 0.22259740259740254
+recall: 0.21999999999999997
+f1: 0.21943977591036412
+============out===========
+acc : 0.6518518518518518
+precision: 0.5202380952380953
+recall: 0.41999999999999993
+f1: 0.45843731431966733
+(138, 1408) (138,)
+2021-07-15 10:18:00.013372: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.254500150680542	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8036877711613974	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.64123272895813	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5290314753850303	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.465360164642334	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.444754719734192	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.4006193478902182	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.372654358545939	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3555345137914023	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.293521841367086	 lr: 0.0003
+------Evaluation-------
+seed :  40
+============T1 HB===========
+acc : 0.6
+precision: 0.46424242424242423
+recall: 0.41999999999999993
+f1: 0.43112326270221
+============T2===========
+acc : 0.5351851851851852
+precision: 0.3662121212121212
+recall: 0.34
+f1: 0.35141186299081034
+============out===========
+acc : 0.5293650793650793
+precision: 0.32999999999999996
+recall: 0.33999999999999997
+f1: 0.3303030303030303
+(138, 1408) (138,)
+2021-07-15 10:18:20.302111: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2124095360438027	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.81592325369517	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6158756415049234	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.536860982577006	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4785777727762857	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.42226505279541	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3772862354914346	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.410050908724467	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.325939734776815	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.317419091860453	 lr: 0.0003
+------Evaluation-------
+seed :  40
+============T1 HB===========
+acc : 0.514021164021164
+precision: 0.36726190476190473
+recall: 0.4
+f1: 0.37114157772052503
+============T2===========
+acc : 0.5441798941798941
+precision: 0.37082917082917083
+recall: 0.36
+f1: 0.3602971623431982
+============out===========
+acc : 0.6224867724867725
+precision: 0.4935897435897436
+recall: 0.48
+f1: 0.4814275477891038
+(138, 1408) (138,)
+2021-07-15 10:18:40.559162: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.195773124694824	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.817632714907328	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.637591004371643	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.524788777033488	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.486515243848165	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4121241172154746	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3968549966812134	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3696784575780234	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.331671357154846	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.2995887994766235	 lr: 0.0003
+------Evaluation-------
+seed :  12
+============T1 HB===========
+acc : 0.5650793650793651
+precision: 0.3893506493506494
+recall: 0.34
+f1: 0.3553501400560224
+============T2===========
+acc : 0.5436507936507937
+precision: 0.35317460317460314
+recall: 0.3
+f1: 0.32176251680895646
+============out===========
+acc : 0.6669312169312169
+precision: 0.5268398268398268
+recall: 0.48
+f1: 0.49599366062214356
+(138, 1408) (138,)
+2021-07-15 10:19:00.662765: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.243024706840515	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.811998128890991	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.603773315747579	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.550937612851461	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.448726773262024	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.440125068028768	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3935139973958335	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3541074991226196	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3078885475794473	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3088149627049765	 lr: 0.0003
+------Evaluation-------
+seed :  46
+============T1 HB===========
+acc : 0.5357142857142856
+precision: 0.3720940170940171
+recall: 0.38
+f1: 0.3731696831010332
+============T2===========
+acc : 0.5502645502645502
+precision: 0.34025974025974026
+recall: 0.26
+f1: 0.2877310924369748
+============out===========
+acc : 0.6010582010582011
+precision: 0.4655555555555556
+recall: 0.5
+f1: 0.4774354066985646
+(138, 1408) (138,)
+2021-07-15 10:19:20.958732: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.25555411974589	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.827666759490967	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6326787869135537	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5519351164499917	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4691291650136313	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4410494565963745	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.404634873072306	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.392252723375956	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.358429431915283	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3245557943979898	 lr: 0.0003
+------Evaluation-------
+seed :  18
+============T1 HB===========
+acc : 0.5203703703703704
+precision: 0.3201048951048951
+recall: 0.30000000000000004
+f1: 0.30124223602484473
+============T2===========
+acc : 0.49232804232804234
+precision: 0.2712454212454213
+recall: 0.26
+f1: 0.26163941202304375
+============out===========
+acc : 0.573015873015873
+precision: 0.4116666666666666
+recall: 0.36
+f1: 0.3667521367521368
+(138, 1408) (138,)
+2021-07-15 10:19:41.159216: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2150983810424805	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.7738537391026816	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.641237815221151	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5727330843607583	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4705282052357993	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4618924458821616	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.393958846728007	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.37928307056427	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.323237578074137	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3247734705607095	 lr: 0.0003
+------Evaluation-------
+seed :  31
+============T1 HB===========
+acc : 0.5214285714285714
+precision: 0.3583333333333333
+recall: 0.38
+f1: 0.35999999999999993
+============T2===========
+acc : 0.5642857142857143
+precision: 0.37363636363636366
+recall: 0.33999999999999997
+f1: 0.3488888888888889
+============out===========
+acc : 0.643915343915344
+precision: 0.5149494949494949
+recall: 0.45999999999999996
+f1: 0.4817167919799498
+(138, 1408) (138,)
+2021-07-15 10:20:01.358906: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2323495149612427	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.880562504132589	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6074052254358926	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.535813252131144	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.449421445528666	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.435975432395935	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3652631839116416	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.4002291758855185	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3348578214645386	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3111730416615806	 lr: 0.0003
+------Evaluation-------
+seed :  31
+============T1 HB===========
+acc : 0.5142857142857143
+precision: 0.329010989010989
+recall: 0.3
+f1: 0.30498437055981814
+============T2===========
+acc : 0.5277777777777779
+precision: 0.3174603174603175
+recall: 0.31999999999999995
+f1: 0.31726374760430487
+============out===========
+acc : 0.6007936507936508
+precision: 0.45995670995671
+recall: 0.4
+f1: 0.4146825396825397
+(138, 1408) (138,)
+2021-07-15 10:20:21.549330: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2376290957132974	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.7989070812861123	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6164432366689048	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.539638121922811	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.473889152208964	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.455056627591451	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.419381777445475	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3835469484329224	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3194233973821006	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3131099541982016	 lr: 0.0003
+------Evaluation-------
+seed :  9
+============T1 HB===========
+acc : 0.46455026455026455
+precision: 0.255
+recall: 0.24000000000000005
+f1: 0.24313131313131314
+============T2===========
+acc : 0.5208994708994709
+precision: 0.32555555555555554
+recall: 0.3
+f1: 0.31181286549707604
+============out===========
+acc : 0.6296296296296295
+precision: 0.5336507936507937
+recall: 0.45999999999999996
+f1: 0.48052631578947363
+(138, 1408) (138,)
+2021-07-15 10:20:41.798289: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2016226847966514	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.785416523615519	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6242451270421348	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5353004932403564	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.457353393236796	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4175726175308228	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.408114512761434	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.338944673538208	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3492784897486367	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3074829975763955	 lr: 0.0003
+------Evaluation-------
+seed :  27
+============T1 HB===========
+acc : 0.484920634920635
+precision: 0.26136363636363635
+recall: 0.22000000000000003
+f1: 0.23663324979114453
+============T2===========
+acc : 0.515079365079365
+precision: 0.3006410256410256
+recall: 0.28
+f1: 0.2823781291172595
+============out===========
+acc : 0.623015873015873
+precision: 0.47147075147075146
+recall: 0.48
+f1: 0.4719079027492004
+(138, 1408) (138,)
+2021-07-15 10:21:01.998576: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.200766444206238	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.9097607930501304	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.733019391695658	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5866898695627847	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4630515575408936	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4589738845825195	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.4245455662409463	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3637698888778687	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.354268034299215	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3302718003590903	 lr: 0.0003
+------Evaluation-------
+seed :  38
+============T1 HB===========
+acc : 0.4552910052910053
+precision: 0.25310245310245305
+recall: 0.22000000000000003
+f1: 0.23346423098745078
+============T2===========
+acc : 0.5211640211640212
+precision: 0.3227994227994228
+recall: 0.32
+f1: 0.3185557476579148
+============out===========
+acc : 0.5862433862433862
+precision: 0.46358585858585855
+recall: 0.41999999999999993
+f1: 0.4294168755221387
+(138, 1408) (138,)
+2021-07-15 10:21:22.193993: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.290316184361776	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.7590332428614297	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6267873446146646	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.540221373240153	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.5166443983713784	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4533564249674478	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.385646104812622	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.381582498550415	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3701337575912476	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.328014850616455	 lr: 0.0003
+------Evaluation-------
+seed :  18
+============T1 HB===========
+acc : 0.47857142857142854
+precision: 0.2884126984126984
+recall: 0.27999999999999997
+f1: 0.28181286549707607
+============T2===========
+acc : 0.5142857142857142
+precision: 0.3079670329670329
+recall: 0.32
+f1: 0.30682011935208864
+============out===========
+acc : 0.658994708994709
+precision: 0.5462759462759463
+recall: 0.54
+f1: 0.5367818523290323
+(138, 1408) (138,)
+2021-07-15 10:21:42.396380: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.217429757118225	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8438488245010376	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6711848179499307	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5904513597488403	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.5083793799082437	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4561924934387207	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3732230265935264	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.388394832611084	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.337363839149475	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.290448029836019	 lr: 0.0003
+------Evaluation-------
+seed :  20
+============T1 HB===========
+acc : 0.5
+precision: 0.2819264069264069
+recall: 0.24
+f1: 0.2575556538404835
+============T2===========
+acc : 0.5716931216931218
+precision: 0.41025641025641024
+recall: 0.36
+f1: 0.37797819356575585
+============out===========
+acc : 0.6515873015873015
+precision: 0.5307936507936508
+recall: 0.44000000000000006
+f1: 0.4787616099071208
+(138, 1408) (138,)
+2021-07-15 10:22:02.601858: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2556196451187134	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8295058012008667	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6896076599756875	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.523259083429972	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4704527457555137	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.3954923947652182	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.355146805445353	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.381770968437195	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.332797368367513	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.289498964945475	 lr: 0.0003
+------Evaluation-------
+seed :  6
+============T1 HB===========
+acc : 0.39788359788359784
+precision: 0.21168831168831165
+recall: 0.22000000000000003
+f1: 0.2126984126984127
+============T2===========
+acc : 0.5362433862433862
+precision: 0.3402564102564103
+recall: 0.36
+f1: 0.34602350738506343
+============out===========
+acc : 0.6222222222222222
+precision: 0.4782478632478632
+recall: 0.5
+f1: 0.48433349513441043
+(138, 1408) (138,)
+2021-07-15 10:22:22.832183: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2198369900385537	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.829324165980021	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.627433180809021	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5186423858006797	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.484829584757487	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.402185638745626	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3845059076944985	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3447662194569907	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3252789974212646	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.2910512685775757	 lr: 0.0003
+------Evaluation-------
+seed :  65
+============T1 HB===========
+acc : 0.40555555555555556
+precision: 0.1756993006993007
+recall: 0.2
+f1: 0.18608444695401216
+============T2===========
+acc : 0.5291005291005291
+precision: 0.3658241758241758
+recall: 0.36
+f1: 0.35774985009606086
+============out===========
+acc : 0.573015873015873
+precision: 0.4276190476190475
+recall: 0.38
+f1: 0.3993701723113488
+(138, 1408) (138,)
+2021-07-15 10:22:43.030929: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2350345055262246	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.819162050882975	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.648764133453369	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5173490047454834	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.438705245653788	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.411400477091471	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3964205980300903	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3804752031962075	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.371782382329305	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3209566275278726	 lr: 0.0003
+------Evaluation-------
+seed :  31
+============T1 HB===========
+acc : 0.4923280423280422
+precision: 0.26969696969696966
+recall: 0.26
+f1: 0.26160666818561557
+============T2===========
+acc : 0.4925925925925926
+precision: 0.3098124098124099
+recall: 0.34
+f1: 0.32192982456140345
+============out===========
+acc : 0.6010582010582011
+precision: 0.4385714285714286
+recall: 0.32
+f1: 0.36601307189542487
+(138, 1408) (138,)
+2021-07-15 10:23:03.236612: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2415315310160318	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.857277790705363	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6827059586842856	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5694574117660522	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.477851947148641	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.451484521230062	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.4238682985305786	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3737937609354653	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3497689962387085	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.329983870188395	 lr: 0.0003
+------Evaluation-------
+seed :  15
+============T1 HB===========
+acc : 0.47698412698412695
+precision: 0.2541414141414141
+recall: 0.2
+f1: 0.2202005012531328
+============T2===========
+acc : 0.5362433862433862
+precision: 0.37222222222222223
+recall: 0.27999999999999997
+f1: 0.31555023923444975
+============out===========
+acc : 0.6079365079365079
+precision: 0.4442424242424242
+recall: 0.34
+f1: 0.37523809523809526
+(138, 1408) (138,)
+2021-07-15 10:23:23.384540: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.290299336115519	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.7745286226272583	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.5791643460591636	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5098939736684165	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.435246547063192	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.413719813028971	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.394628961881002	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.339006463686625	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.304559270540873	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3310601711273193	 lr: 0.0003
+------Evaluation-------
+seed :  8
+============T1 HB===========
+acc : 0.587037037037037
+precision: 0.4269230769230769
+recall: 0.4
+f1: 0.40976353928299003
+============T2===========
+acc : 0.5941798941798941
+precision: 0.46782106782106786
+recall: 0.41999999999999993
+f1: 0.4348223499926286
+============out===========
+acc : 0.6010582010582011
+precision: 0.4457070707070708
+recall: 0.44000000000000006
+f1: 0.4413533834586466
+(138, 1408) (138,)
+2021-07-15 10:23:43.630581: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2409364382425943	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8462138573328652	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6561779181162515	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5226728121439614	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.496299147605896	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.3694980144500732	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.367807070414225	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3404714266459146	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3166282574335733	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.316533327102661	 lr: 0.0003
+------Evaluation-------
+seed :  41
+============T1 HB===========
+acc : 0.4708994708994709
+precision: 0.2458791208791209
+recall: 0.25999999999999995
+f1: 0.24962099117436307
+============T2===========
+acc : 0.6013227513227513
+precision: 0.46464646464646464
+recall: 0.4000000000000001
+f1: 0.4118295739348371
+============out===========
+acc : 0.6375661375661376
+precision: 0.5002020202020202
+recall: 0.4600000000000001
+f1: 0.4773266499582289
+(138, 1408) (138,)
+2021-07-15 10:24:03.778947: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2426160176595054	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8736859560012817	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6154592434565225	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.538851181666056	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4386638402938843	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.449884533882141	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3698768615722656	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.379461407661438	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3074467182159424	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3103079001108804	 lr: 0.0003
+------Evaluation-------
+seed :  21
+============T1 HB===========
+acc : 0.5507936507936508
+precision: 0.41346153846153844
+recall: 0.43999999999999995
+f1: 0.41353531379106834
+============T2===========
+acc : 0.5587301587301587
+precision: 0.36989898989898984
+recall: 0.36
+f1: 0.3626441102756892
+============out===========
+acc : 0.588095238095238
+precision: 0.4455882352941177
+recall: 0.45999999999999996
+f1: 0.4444444444444445
+(138, 1408) (138,)
+2021-07-15 10:24:24.042874: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.246791124343872	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.7876357634862265	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.588242848714193	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5820948680241904	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.5032838185628257	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.428165872891744	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.400009512901306	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3674026330312095	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3152546485265098	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3071572383244834	 lr: 0.0003
+------Evaluation-------
+seed :  17
+============T1 HB===========
+acc : 0.571957671957672
+precision: 0.40844155844155844
+recall: 0.39999999999999997
+f1: 0.3984126984126984
+============T2===========
+acc : 0.5796296296296296
+precision: 0.4033333333333333
+recall: 0.32
+f1: 0.34848750664540135
+============out===========
+acc : 0.5203703703703704
+precision: 0.35
+recall: 0.2800000000000001
+f1: 0.30838649654439126
+(138, 1408) (138,)
+2021-07-15 10:24:44.246621: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.1972776651382446	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8869550625483194	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6764130194981894	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5223451058069863	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4577248096466064	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.419355312983195	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3840401570002236	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3389442364374795	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.330490748087565	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3000264962514243	 lr: 0.0003
+------Evaluation-------
+seed :  43
+============T1 HB===========
+acc : 0.5791005291005291
+precision: 0.4133333333333333
+recall: 0.3
+f1: 0.3241768757558231
+============T2===========
+acc : 0.5428571428571429
+precision: 0.35129870129870133
+recall: 0.33999999999999997
+f1: 0.33828197945845007
+============out===========
+acc : 0.5428571428571428
+precision: 0.35341880341880344
+recall: 0.34
+f1: 0.3429443173150267
+(138, 1408) (138,)
+2021-07-15 10:25:04.542420: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2276894648869834	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.823222001393636	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.7167819341023765	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5617536703745523	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.490178187688192	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4466113646825156	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3908611536026	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3663390080134072	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3638482888539634	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.313268542289734	 lr: 0.0003
+------Evaluation-------
+seed :  0
+============T1 HB===========
+acc : 0.5288359788359789
+precision: 0.3127272727272727
+recall: 0.27999999999999997
+f1: 0.29233082706766916
+============T2===========
+acc : 0.6304232804232804
+precision: 0.4969230769230769
+recall: 0.45999999999999996
+f1: 0.4736231884057971
+============out===========
+acc : 0.607936507936508
+precision: 0.49764957264957266
+recall: 0.5
+f1: 0.4922552758708365
+(138, 1408) (138,)
+2021-07-15 10:25:24.826092: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.183480699857076	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8673212925593057	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.662558992703756	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5795461336771646	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.534145991007487	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4675951401392617	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.402832547823588	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.355517864227295	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.341179052988688	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3075414101282754	 lr: 0.0003
+------Evaluation-------
+seed :  39
+============T1 HB===========
+acc : 0.4925925925925926
+precision: 0.2633333333333333
+recall: 0.24000000000000005
+f1: 0.24699627857522594
+============T2===========
+acc : 0.5214285714285715
+precision: 0.30333333333333334
+recall: 0.25999999999999995
+f1: 0.2709090909090909
+============out===========
+acc : 0.6373015873015874
+precision: 0.5014285714285714
+recall: 0.41999999999999993
+f1: 0.4545098039215686
+(138, 1408) (138,)
+2021-07-15 10:25:45.054393: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2229755322138467	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.805873473485311	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.626552621523539	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5673174063364663	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.462425788243612	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4283128579457602	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3685158491134644	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3670161167780557	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.348923643430074	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.326431671778361	 lr: 0.0003
+------Evaluation-------
+seed :  39
+============T1 HB===========
+acc : 0.5365079365079366
+precision: 0.34606227106227105
+recall: 0.3
+f1: 0.31703683761834245
+============T2===========
+acc : 0.5642857142857143
+precision: 0.41126050420168064
+recall: 0.36
+f1: 0.35027369832323396
+============out===========
+acc : 0.5923280423280423
+precision: 0.42833333333333334
+recall: 0.36000000000000004
+f1: 0.3879824561403509
+(138, 1408) (138,)
+2021-07-15 10:26:05.345174: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2103636662165322	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8426756064097085	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6425272623697915	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5148943265279136	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.470297654469808	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4173368215560913	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.4080753326416016	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.348192811012268	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3124311367670694	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3053483168284097	 lr: 0.0003
+------Evaluation-------
+seed :  28
+============T1 HB===========
+acc : 0.5513227513227514
+precision: 0.3704761904761905
+recall: 0.36
+f1: 0.35705882352941176
+============T2===========
+acc : 0.48571428571428577
+precision: 0.2822222222222222
+recall: 0.27999999999999997
+f1: 0.27421052631578946
+============out===========
+acc : 0.5650793650793651
+precision: 0.40499999999999997
+recall: 0.4
+f1: 0.3991919191919192
+(138, 1408) (138,)
+2021-07-15 10:26:25.549563: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2205623388290405	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.7809094985326133	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.586646397908529	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5220407247543335	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.438898960749308	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4096662998199463	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.410127600034078	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3815228939056396	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.344021995862325	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.2961506446202598	 lr: 0.0003
+------Evaluation-------
+seed :  41
+============T1 HB===========
+acc : 0.4920634920634921
+precision: 0.28880952380952374
+recall: 0.26
+f1: 0.2677777777777778
+============T2===========
+acc : 0.5137566137566137
+precision: 0.27875901875901876
+recall: 0.26
+f1: 0.2674598260356774
+============out===========
+acc : 0.5801587301587301
+precision: 0.4209090909090909
+recall: 0.45999999999999996
+f1: 0.43839598997493734
+(138, 1408) (138,)
+2021-07-15 10:26:45.684278: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2433502674102783	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.891563812891642	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.627146522204081	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5529459714889526	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.466979463895162	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4397247234980264	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.4106308221817017	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3583351373672485	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3610337177912393	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3297942082087197	 lr: 0.0003
+------Evaluation-------
+seed :  11
+============T1 HB===========
+acc : 0.4492063492063492
+precision: 0.2462121212121212
+recall: 0.28
+f1: 0.25835497835497834
+============T2===========
+acc : 0.44100529100529096
+precision: 0.2195238095238095
+recall: 0.26
+f1: 0.2315757575757576
+============out===========
+acc : 0.6296296296296297
+precision: 0.47714285714285715
+recall: 0.42000000000000004
+f1: 0.43329258976317797
+(138, 1408) (138,)
+2021-07-15 10:27:05.916758: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.223303437232971	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8139631350835166	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.654592235883077	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5435496966044107	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.450868566830953	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4031653801600137	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.349445422490438	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3733308712641397	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3223109245300293	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.27287749449412	 lr: 0.0003
+------Evaluation-------
+seed :  17
+============T1 HB===========
+acc : 0.5507936507936508
+precision: 0.35757575757575755
+recall: 0.32
+f1: 0.33617376775271507
+============T2===========
+acc : 0.593915343915344
+precision: 0.42987012987012985
+recall: 0.36
+f1: 0.38039215686274513
+============out===========
+acc : 0.5645502645502646
+precision: 0.4044122544122544
+recall: 0.4
+f1: 0.3952325594269329
+(138, 1408) (138,)
+2021-07-15 10:27:26.168787: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.1688416401545205	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.7863879203796387	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6981173753738403	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.545842965443929	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4853641589482627	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4418702522913613	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.4030808210372925	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.366553465525309	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3216418822606406	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.2938047647476196	 lr: 0.0003
+------Evaluation-------
+seed :  17
+============T1 HB===========
+acc : 0.5576719576719575
+precision: 0.3533333333333334
+recall: 0.32000000000000006
+f1: 0.33090909090909093
+============T2===========
+acc : 0.5288359788359789
+precision: 0.3477272727272728
+recall: 0.32
+f1: 0.3317460317460318
+============out===========
+acc : 0.5801587301587301
+precision: 0.39801587301587305
+recall: 0.38
+f1: 0.3863683272352003
+(138, 1408) (138,)
+2021-07-15 10:27:46.383662: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.223832368850708	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.837805151939392	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6165331999460855	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.5335309505462646	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.507821043332418	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4564062356948853	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3897461891174316	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3822742303212485	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.378726522127787	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3668241103490195	 lr: 0.0003
+------Evaluation-------
+seed :  26
+============T1 HB===========
+acc : 0.520899470899471
+precision: 0.32954545454545453
+recall: 0.30000000000000004
+f1: 0.3084320650110124
+============T2===========
+acc : 0.6087301587301587
+precision: 0.44440836940836936
+recall: 0.38
+f1: 0.4063393778564057
+============out===========
+acc : 0.5857142857142856
+precision: 0.3971139971139971
+recall: 0.38
+f1: 0.3843887794352191
+(138, 1408) (138,)
+2021-07-15 10:28:06.603269: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.183435877164205	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.7883616288503013	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6192052761713662	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.528549234072367	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.4815550645192466	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.429736097653707	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.3885281880696616	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.34277613957723	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.3338173230489097	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.298611561457316	 lr: 0.0003
+------Evaluation-------
+seed :  65
+============T1 HB===========
+acc : 0.5441798941798941
+precision: 0.37666666666666665
+recall: 0.4
+f1: 0.3844444444444445
+============T2===========
+acc : 0.5428571428571429
+precision: 0.34744588744588745
+recall: 0.32
+f1: 0.32848739495798324
+============out===========
+acc : 0.629100529100529
+precision: 0.47777777777777786
+recall: 0.38
+f1: 0.4197368421052631
+(138, 1408) (138,)
+2021-07-15 10:28:26.931187: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2132932345072427	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.847000082333883	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.6587225596110025	 lr: 0.0003
+Epoch [3/10]	 Loss: 2.545350193977356	 lr: 0.0003
+Epoch [4/10]	 Loss: 2.463718891143799	 lr: 0.0003
+Epoch [5/10]	 Loss: 2.4354626735051474	 lr: 0.0003
+Epoch [6/10]	 Loss: 2.41273828347524	 lr: 0.0003
+Epoch [7/10]	 Loss: 2.3724154233932495	 lr: 0.0003
+Epoch [8/10]	 Loss: 2.341246565183004	 lr: 0.0003
+Epoch [9/10]	 Loss: 2.3149064779281616	 lr: 0.0003
+------Evaluation-------
+seed :  53
+============T1 HB===========
+acc : 0.5941798941798941
+precision: 0.4759018759018758
+recall: 0.42000000000000004
+f1: 0.4345186495650892
+============T2===========
+acc : 0.5584656084656086
+precision: 0.33873626373626375
+recall: 0.38
+f1: 0.3543478260869565
+============out===========
+acc : 0.665873015873016
+precision: 0.5253968253968255
+recall: 0.42000000000000004
+f1: 0.4552249607977162
+(138, 1408) (138,)
+2021-07-15 10:28:47.213487: I tensorflow/stream_executor/platform/default/dso_loader.cc:49] Successfully opened dynamic library libcudart.so.10.1
+{'T1 HB': [[0.2962, 0.2962, 0.2962], [0.2527, 0.2527, 0.2527]], 'T2': [[0.2055, 0.2055, 0.2055], [0.1727, 0.1727, 0.1727]], 'out': [[0.2, 0.2, 0.2], [0.1644, 0.1644, 0.1644]]}
+Loaded pretrained weights for efficientnet-b2
+138 images found
+Loaded pretrained weights for efficientnet-b2
+Epoch [0/10]	 Loss: 3.2469626665115356	 lr: 0.0003
+Epoch [1/10]	 Loss: 2.8414633671442666	 lr: 0.0003
+Epoch [2/10]	 Loss: 2.614134351412455	 lr: 0.0003

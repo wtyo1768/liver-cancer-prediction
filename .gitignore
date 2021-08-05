@@ -5,3 +5,10 @@ __pycache__
 .vscode
 lightning_logs
 model
+
+tune
+tune_t1
+tune_t2
+tune_out
+pretrain_imgnet
+# SimCLR

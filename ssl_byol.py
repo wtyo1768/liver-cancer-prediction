@@ -4,6 +4,7 @@ import multiprocessing
 from pathlib import Path
 
 import torch
+from torch.autograd.grad_mode import F
 from torchvision import models, transforms
 from torch.utils.data import DataLoader, Dataset
 
@@ -24,6 +25,8 @@ from cfg import image_size, v, channel
 
 
 def random_mri():
+    # rng = np.random.default_rng(2021)
+    # seed = rng.random(1)[0]
     seed = np.random.rand(1)[0]
     # seed = random.random()
     if seed < 0.33: return 'T1 HB'
@@ -35,7 +38,9 @@ def aug_fn(fname):
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     imgs = []
     d = -1 if channel==3 else 0
+    
     for f in fname:
+        # mri_type = 'T1 HB'
         mri_type = random_mri()
         f = f.replace('mri_type', mri_type)+'.jpg'
         img = img_pipe(f, mri_type)
@@ -72,25 +77,32 @@ class SelfSupervisedLearner(pl.LightningModule):
 
 
 effnet = EfficientNet.from_pretrained(
-    'efficientnet-b1',
+    'efficientnet-b2',
     in_channels=channel,
 )
+# import torchvision
+# effnet = torchvision.models.resnet18(pretrained=True)
+
 model = SelfSupervisedLearner(
     effnet,
     image_size=image_size,
     hidden_layer='_avg_pooling',
+    # hidden_layer='avgpool',
     projection_size=256,
-    # projection_hidden_size=1792,
+    # projection_hidden_size=1408*2,
+    projection_hidden_size=1792,
     moving_average_decay=0.99,
     use_momentum=False,
     channel=channel,
-)
-
+) 
+#SILU
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='byol-lightning-test')
     parser.add_argument('--BATCH_SIZE', type=int, required = True,)
     parser.add_argument('--EPOCHS', type=int, required = True,)
     parser.add_argument('--LR', type=float, required = True,)
+    parser.add_argument('--i', type=int, required = True,)
+
     args = parser.parse_args()
 
     BATCH_SIZE = args.BATCH_SIZE
@@ -101,9 +113,9 @@ if __name__ == '__main__':
 
     ds = ImagesDataset()
     train_loader = DataLoader(ds, batch_size=BATCH_SIZE, num_workers=NUM_WORKERS, shuffle=True)
-    print(v)
     
-    # print(model.learner)
+    if args.i==0:
+        print(model.learner)
     trainer = pl.Trainer(
         gpus = NUM_GPUS,
         max_epochs = EPOCHS,
@@ -112,7 +124,6 @@ if __name__ == '__main__':
         # gradient_clip_val=2,
         # stochastic_weight_avg=True,
     )
-
     trainer.fit(model, train_loader)
 
 
@@ -129,7 +140,9 @@ if __name__ == '__main__':
     t3 = linear_evaluation(X, y, seed)
     
 
-    if t1 > 0.69 or t2 > 0.69 or t3>.69:
-        torch.save(model.learner.state_dict(), f'./model/{(round(t1,2))}_{round(t2, 2)}.pth')
-
+    if t1>0.69 or t2>0.69 or t3>0.69:
+        torch.save(
+            model.learner.state_dict(), 
+            f'./model/{(round(t1,2))}_{round(t2, 2)}_{round(t3, 2)}.pth'
+        )
     print(X.shape, y.shape)
