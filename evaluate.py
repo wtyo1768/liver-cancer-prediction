@@ -49,9 +49,7 @@ class crop(nn.Module):
         self.ratio = ratio
     def forward(self, img):
         ratio = random.uniform(self.ratio, 1)
-        # print('crop',type(img))
         w, h = img.size
-        # h, w = img.shape[-2], img.shape[-1]
         return T.RandomCrop((int(h*ratio), int(w*ratio)))(img)
 
 # normalize -> Aug -> pad -> resize
@@ -64,13 +62,7 @@ train_aug = lambda ele:[
         p=0.8
         # p = 0.5
     ),
-    # T.RandomGrayscale(p=0.2),
-    # RandomApply(
-    #     T.GaussianBlur((3, 3), (1.0, 2.0)),
-    #     p = 0.2
-    # ),
-    # RandomApply(crop(.75), p = 0.5),                
-    T.RandomRotation(2.8),
+    RandomApply(crop(.75), p = 0.5),                
     T.RandomHorizontalFlip(),
     T.RandomVerticalFlip(),
     T.ToTensor(),
@@ -89,25 +81,12 @@ data_pipe = {
     'train': lambda stat:T.Compose(train_aug(stat)),
     'eval' : lambda stat:T.Compose(test_aug(stat)),
 }
-print(data_pipe['train'](v['T2']))
-print(data_pipe['eval'](v['T2']))
 
 
 def img_pipe(fname, mri_type, mode="train"):
     assert(os.path.isfile(fname))
     img = Image.open(fname)
-    # print(img.format, img.size, img.mode)
-# 
-    # img = cv2.imread(fname)
-    # img = np.moveaxis(img, -1, 0)
-    # img = img / 255.0
-    # img = torch.tensor(img, dtype=torch.float32)
-    # if mode=='train':
-    #     img = T.ToTensor()(img)
-
-        # print(img[0])
     img = data_pipe[mode](v[mri_type])(img)
-    # print(img.shape)
     return img 
 
 
@@ -132,13 +111,10 @@ def get_features(model, mri_type='T1 HB'):
     if channel==1: imgs = imgs.unsqueeze(1)
     with torch.no_grad():
         projection, embedding = model(imgs, return_embedding=True)
-    # print(projection)
-    # print(y.shape)
     return projection.detach().numpy(), np.array(y)
 
 
 def linear_evaluation(features_train, y_train, seed=0):
-    # features_train = StandardScaler().fit_transform(features_train)
 
     clf = LogisticRegression(
         solver='liblinear',
@@ -150,8 +126,6 @@ def linear_evaluation(features_train, y_train, seed=0):
 
     scores = cross_validate(clf, features_train, 
         y_train, cv=5, scoring=scoring, return_train_score=True)
-    # print(scores.keys())
-    # print('train acc:', np.mean(np.array(scores['train_accuracy'])))
 
     print('acc :', np.mean(np.array(scores['test_accuracy'])))
     print('precision:', np.mean(np.array(scores['test_precision'])))

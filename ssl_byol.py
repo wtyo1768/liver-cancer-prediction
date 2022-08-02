@@ -25,10 +25,7 @@ from cfg import image_size, v, channel
 
 
 def random_mri():
-    # rng = np.random.default_rng(2021)
-    # seed = rng.random(1)[0]
     seed = np.random.rand(1)[0]
-    # seed = random.random()
     if seed < 0.33: return 'T1 HB'
     elif seed >= 0.33 and  seed <= 0.67: return 'T2' 
     return 'out'
@@ -40,8 +37,8 @@ def aug_fn(fname):
     d = -1 if channel==3 else 0
     
     for f in fname:
-        # mri_type = 'T1 HB'
-        mri_type = random_mri()
+        mri_type = 'T1 HB'
+        # mri_type = random_mri()
         f = f.replace('mri_type', mri_type)+'.jpg'
         img = img_pipe(f, mri_type)
         imgs.append(img)
@@ -80,8 +77,6 @@ effnet = EfficientNet.from_pretrained(
     'efficientnet-b2',
     in_channels=channel,
 )
-# import torchvision
-# effnet = torchvision.models.resnet18(pretrained=True)
 
 model = SelfSupervisedLearner(
     effnet,
@@ -140,9 +135,9 @@ if __name__ == '__main__':
     t3 = linear_evaluation(X, y, seed)
     
 
-    if t1>0.69 or t2>0.69 or t3>0.69:
+    if t1>0.60 or t2>0.60 and t3>0.60:
         torch.save(
             model.learner.state_dict(), 
-            f'./model/{(round(t1,2))}_{round(t2, 2)}_{round(t3, 2)}.pth'
+            f'./model/t1_{(round(t1,2))}_{round(t2, 2)}_{round(t3, 2)}.pth'
         )
     print(X.shape, y.shape)

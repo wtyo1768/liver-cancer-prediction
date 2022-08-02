@@ -6,6 +6,7 @@ from torchmetrics.functional.classification.accuracy import accuracy
 from torchmetrics.functional.classification.f_beta import f1
 import pytorch_lightning as pl
 from ssl_byol import model
+import torch.nn.functional as F
 
 
 
@@ -29,7 +30,7 @@ class encoder(nn.Module):
 
 
     def forward(self, T1_HB, T2, out, label=None,):
-        hidden = self.encoder(T2)
+        hidden = self.encoder(out)
         logits = self.proj(hidden)
         if label is not None:
             loss_fct = nn.CrossEntropyLoss(
@@ -80,40 +81,105 @@ class NetWrapper(nn.Module):
         return representation
 
 
+class ShuffleV1Block(nn.Module):
+    def __init__(self, inp, oup, *, group, mid_channels, ksize, stride):
+        super(ShuffleV1Block, self).__init__()
+        self.stride = stride
+        assert stride in [1, 2]
+
+        self.mid_channels = mid_channels
+        self.ksize = ksize
+        pad = ksize // 2
+        self.pad = pad
+        self.inp = inp
+        self.group = group
+
+        outputs = oup
+
+        branch_main_1 = [
+            # pw
+            nn.Conv2d(inp, mid_channels, 1, groups=group, bias=False),
+            nn.BatchNorm2d(mid_channels),
+            nn.SiLU(inplace=True),
+            # dw
+        ]
+        self.branch_main_1 = nn.Sequential(*branch_main_1)
+
+
+    def forward(self, old_x):
+        x = old_x
+        x_proj = old_x
+
+        if self.group > 1:
+            x = self.channel_shuffle(x)
+        x = self.branch_main_1(x)
+        
+        return F.silu(x + x_proj)
+
+
+    def channel_shuffle(self, x):
+        batchsize, num_channels, height, width = x.data.size()
+        assert num_channels % self.group == 0
+        group_channels = num_channels // self.group
+        
+        x = x.reshape(batchsize, group_channels, self.group, height, width)
+        x = x.permute(0, 2, 1, 3, 4)
+        x = x.reshape(batchsize, num_channels, height, width)
+
+        return x
+
+class eca_layer(nn.Module):
+    """Constructs a ECA module.
+    Args:
+        channel: Number of channels of the input feature map
+        k_size: Adaptive selection of kernel size
+    """
+    def __init__(self, channel, k_size=3):
+        super(eca_layer, self).__init__()
+        self.avg_pool = nn.AdaptiveAvgPool2d(1)
+        self.conv = nn.Conv1d(1, 1, kernel_size=k_size, padding=(k_size - 1) // 2, bias=False) 
+        self.sigmoid = nn.Sigmoid()
+
+    def forward(self, x):
+        # feature descriptor on the global spatial information
+        y = self.avg_pool(x)
+
+        # Two different branches of ECA module
+        y = self.conv(y.squeeze(-1).transpose(-1, -2)).transpose(-1, -2).unsqueeze(-1)
+
+        # Multi-scale information fusion
+        y = self.sigmoid(y)
+
+        return x * y.expand_as(x)
+
+
 class CM_Encoder(nn.Module):
     def __init__(self, cw):
         super().__init__()
         self.cw = cw
         encoder = model.learner
         
-        encoder.load_state_dict(torch.load('./model/0.66_0.51_0.72.pth'))
-        # encoder.load_state_dict(torch.load('./model/0.7_0.49_0.65.pth'))
-        # print(encoder)
-
-        # for parameter in encoder.net._conv_stem.parameters():
-        #     parameter.requires_grad = False
-        # for parameter in encoder.net._bn0.parameters():
-        #     parameter.requires_grad = False
-        # for parameter in encoder.net._blocks[:-5].parameters():
-        #     parameter.requires_grad = False
-
-        # for parameter in encoder.parameters():
-        #     parameter.requires_grad = False
-        
+        encoder.load_state_dict(torch.load('./model/0.66_0.51_0.72.pth'))        
 
         d_model = 1408
         self.d_model = d_model
         self.netwrapper = NetWrapper(encoder, layer='net._conv_head')
-        # self.netwrapper = NetWrapper(encoder, layer='net._blocks.22')
-        self.conn = torch.nn.Conv3d(1408, d_model, (3, 1, 1))
+
+        group = 8
+        self.conv3d = torch.nn.Conv3d(1408, d_model, (3, 1, 1), groups=group)
+
+        self.shuffle_block = ShuffleV1Block(1408, 1408, group=group,    
+                                            mid_channels=1408, ksize=1, stride=1)
+        self.shuffle_block2 = ShuffleV1Block(1408, 1408, group=group,
+                                            mid_channels=1408, ksize=1, stride=1)
+        self.shuffle_block3 = ShuffleV1Block(1408, 1408, group=group,
+                                            mid_channels=1408, ksize=1, stride=1)
+
         self.block = nn.Sequential(
-            nn.BatchNorm2d(d_model),
+            # nn.BatchNorm2d(d_model),
             nn.AdaptiveAvgPool2d(output_size=1),
-        )
+        )   
         self.proj = nn.Sequential(
-            # nn.Dropout(.5),
-            # nn.Linear(d_model, d_model),
-            # nn.SiLU(),
             nn.Dropout(.3),
             nn.Linear(d_model, 2),
         )
@@ -126,8 +192,11 @@ class CM_Encoder(nn.Module):
         out = self.netwrapper(out)
 
         fmap = torch.stack([t1, t2, out], dim=2)
-        # print(fmap.shape)
-        fmap = self.conn(fmap).squeeze(2)
+        
+        fmap = self.conv3d(fmap).squeeze(2)
+        fmap = self.shuffle_block(fmap)
+        fmap = self.shuffle_block2(fmap)
+        fmap = self.shuffle_block3(fmap)
 
         hidden = self.block(fmap)
         hidden= hidden.view(bsz, self.d_model)
@@ -147,8 +216,7 @@ class ssl_encoder(nn.Module):
         super().__init__()
         self.cw = cw
         self.encoder = model.learner  
-        # self.encoder.load_state_dict(torch.load('./model/0.66_0.51_0.72.pth'))
-        self.encoder.load_state_dict(torch.load('./model/0.55_0.72_0.59.pth'))
+        self.encoder.load_state_dict(torch.load('./model/t1_0.62_0.51_0.57.pth'))
 
         self.pj =  nn.Sequential(
             nn.Dropout(.3),
@@ -176,19 +244,15 @@ class cls(pl.LightningModule):
             self.lr = hparams.LR
         if enc=='ca':
             self.encoder = CM_Encoder(self.cw)
-        # else:
-        #     self.encoder = ssl_encoder(self.cw)
         else:
-            self.encoder = encoder(self.cw)
-
-        if kargs.get('p'):print(self.encoder)
+            self.encoder = ssl_encoder(self.cw)
 
     def forward(self, T1_HB, T2, out, label=None,):
             return self.encoder(T1_HB, T2, out, label=label)
 
     def training_step(self, batch, _):
         loss, _, = self.forward(**batch)
-        self.log("loss", loss, on_step=False, prog_bar=True)
+        self.log("loss", loss, on_step=False, prog_bar=False)
         return loss
 
 
@@ -207,7 +271,7 @@ class cls(pl.LightningModule):
             'prec':     pr[0],
         }
         self.log_dict(
-            metrics, on_epoch=True, prog_bar=True, on_step=False
+            metrics, on_epoch=True, prog_bar=False, on_step=False
         )
         return metrics
 

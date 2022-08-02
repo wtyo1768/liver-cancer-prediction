@@ -1,9 +1,7 @@
 import pandas as pd 
 from torch.utils.data import DataLoader, Dataset
 import sys
-
 sys.path.append('../liver-canser-prediction')
-from src.preprocess.dataset import padding_and_resize
 
 df = pd.read_csv('/home/rockyo/liver-canser-prediction/data/feature_path.csv')
 
