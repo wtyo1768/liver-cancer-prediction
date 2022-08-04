@@ -9,6 +9,7 @@ from sklearn.model_selection import StratifiedKFold, KFold
 from pytorch_lightning.callbacks import ModelCheckpoint
 from model import cls
 from pytorch_lightning.callbacks.early_stopping import EarlyStopping
+from cfg import data_path
 
 
 class ImagesDataset(Dataset):
@@ -22,7 +23,7 @@ class ImagesDataset(Dataset):
         }
 
         for row in df.iterrows():
-            f=row[1]['filename'].replace('dy','rockyo').replace('chime-pj', 'liver-canser-prediction')
+            f=row[1]['filename'].replace('dy','rockyo').replace('chime-pj', 'byol')
             for mri_type in imgs.keys():
                 fname = f.replace('mri_type', mri_type)+'.jpg'
                 img = img_pipe(fname, mri_type, mode=mode)
@@ -62,8 +63,7 @@ parser.add_argument('--fold', type=int, default=-1)
 parser = pl.Trainer.add_argparse_args(parser)
 args = parser.parse_args()
 
-
-df = pd.read_csv('/home/rockyo/liver-canser-prediction/data/feature_path.csv')
+df = pd.read_csv(data_path)
 
 seed = np.random.randint(66) if args.seed==-1 else args.seed
 metric = []
@@ -89,9 +89,8 @@ for i, (train_idx, val_idx) in enumerate(StratifiedKFold(n_splits=K, random_stat
         patience=3, verbose=False, mode='max'
     )
     trainer = pl.Trainer.from_argparse_args(
-        args,  log_every_n_steps=1500, logger=False,progress_bar_refresh_rate=0,
-        callbacks=[checkpoint, #es
-        ],        # weights_summary='full'
+        args,  log_every_n_steps=1500, logger=False,
+        callbacks=[checkpoint,],       
     )
     train_loader = DataLoader(
         train_ds, 
@@ -106,7 +105,6 @@ for i, (train_idx, val_idx) in enumerate(StratifiedKFold(n_splits=K, random_stat
         shuffle=False,
     )
     model = cls(args, class_weight=train_ds.class_weight, enc=args.cls, p=args.i==0 and i==0)
-    # trainer.tune(model)
     trainer.fit(
         model, 
         train_loader, 
@@ -117,12 +115,12 @@ for i, (train_idx, val_idx) in enumerate(StratifiedKFold(n_splits=K, random_stat
     model = cls.load_from_checkpoint(checkpoint.best_model_path, class_weight=train_ds.class_weight, enc=args.cls)
     pred = trainer.validate(model, val_loader)
     metric.append(pred[0])
-    # print(pred[0])
+
     if pred[0]['val_acc'] > .66:
         a, f = pred[0]['val_acc'], pred[0]['f1']
         torch.save(
             model.state_dict(), 
-            f'./model_t1/{(round(a,2))}_{round(f, 2)}.pth'
+            f'./model/cgc_{(round(a,2))}_{round(f, 2)}.pth'
         )
 
 if args.fold==-1:

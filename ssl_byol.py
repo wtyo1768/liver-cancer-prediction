@@ -4,24 +4,15 @@ import multiprocessing
 from pathlib import Path
 
 import torch
-from torch.autograd.grad_mode import F
-from torchvision import models, transforms
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import DataLoader
 
 from byol_pytorch import BYOL
 import pytorch_lightning as pl
-import sys
-sys.path.append('../liver-canser-prediction')
-from src.preprocess.dataset import padding_and_resize
-import cv2
 from loader import ImagesDataset
 from efficientnet_pytorch import EfficientNet
 import numpy as np
-from torch import nn
-from torchvision import transforms as T
-import random
 from evaluate import get_features, img_pipe, linear_evaluation
-from cfg import image_size, v, channel
+from cfg import image_size, channel
 
 
 def random_mri():
@@ -37,8 +28,8 @@ def aug_fn(fname):
     d = -1 if channel==3 else 0
     
     for f in fname:
-        mri_type = 'T1 HB'
-        # mri_type = random_mri()
+        # mri_type = 'T1 HB'
+        mri_type = random_mri()
         f = f.replace('mri_type', mri_type)+'.jpg'
         img = img_pipe(f, mri_type)
         imgs.append(img)
@@ -56,7 +47,6 @@ class SelfSupervisedLearner(pl.LightningModule):
             **kwargs
         )
     def forward(self, images):
-        # print('forward', images)
         return self.learner(images, return_embedding=False)
 
     def training_step(self, images, _):
@@ -65,8 +55,6 @@ class SelfSupervisedLearner(pl.LightningModule):
 
     def configure_optimizers(self):
         return torch.optim.Adam(self.parameters(), lr=LR)
-        # return torch.optim.SGD(self.parameters(), lr=LR)
-
 
     def on_before_zero_grad(self, _):
         if self.learner.use_momentum:
@@ -90,7 +78,7 @@ model = SelfSupervisedLearner(
     use_momentum=False,
     channel=channel,
 ) 
-#SILU
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='byol-lightning-test')
     parser.add_argument('--BATCH_SIZE', type=int, required = True,)
@@ -134,10 +122,10 @@ if __name__ == '__main__':
     X, y = get_features(model.learner, 'out')
     t3 = linear_evaluation(X, y, seed)
     
-
+    # Model saving
     if t1>0.60 or t2>0.60 and t3>0.60:
         torch.save(
             model.learner.state_dict(), 
-            f'./model/t1_{(round(t1,2))}_{round(t2, 2)}_{round(t3, 2)}.pth'
+            f'./model/pretrained_t1_{(round(t1,2))}_{round(t2, 2)}_{round(t3, 2)}.pth'
         )
     print(X.shape, y.shape)

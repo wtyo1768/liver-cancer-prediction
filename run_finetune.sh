@@ -13,7 +13,7 @@ echo "BATCH_SIZE : $BATCH_SIZE"
 
 echo '**************************'
 
-for i in $(seq 0 10);
+for i in $(seq 0 0);
 do
     python3 CGC.py  \
         --gpu 1 \

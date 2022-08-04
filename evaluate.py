@@ -1,19 +1,14 @@
 import numpy as np
 import pandas as pd
-import cv2
-import sys
-sys.path.append('/home/rockyo/liver-canser-prediction')
 import torch
 from torchvision import transforms as T
 from torch import nn
 import os
 import random
-from cfg import image_size, v, channel
+from cfg import image_size, v, channel, data_path
 from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import cross_val_score, cross_validate
-from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import cross_validate
 from PIL import Image
-
 
 
 class RandomApply(nn.Module):
@@ -89,8 +84,7 @@ def img_pipe(fname, mri_type, mode="train"):
     img = data_pipe[mode](v[mri_type])(img)
     return img 
 
-
-df = pd.read_csv('/home/rockyo/liver-canser-prediction/data/feature_path.csv')
+df = pd.read_csv(data_path)
 features = []
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
@@ -101,7 +95,7 @@ def get_features(model, mri_type='T1 HB'):
     print(f'============{mri_type}===========')
     for i in range(df.shape[0]):
         fname = df.iloc[i].loc['filename']
-        fname = fname.replace('dy','rockyo').replace('chime-pj', 'liver-canser-prediction')
+        fname = fname.replace('dy','rockyo').replace('chime-pj', 'byol')
         fname = fname.replace('mri_type', mri_type) + '.jpg'
         label = df.iloc[i].loc['class_one_hot']
         img = img_pipe(fname, mri_type, mode="eval")
@@ -134,7 +128,3 @@ def linear_evaluation(features_train, y_train, seed=0):
 
     return np.mean(np.array(scores['test_accuracy']))
     
-
-
-if  __name__ == '__main__':
-    get_features(3)

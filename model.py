@@ -3,7 +3,7 @@ from torch import nn
 from efficientnet_pytorch import EfficientNet
 from torchmetrics.functional.classification.precision_recall import precision_recall
 from torchmetrics.functional.classification.accuracy import accuracy
-from torchmetrics.functional.classification.f_beta import f1
+from torchmetrics.functional import f1_score as f1
 import pytorch_lightning as pl
 from ssl_byol import model
 import torch.nn.functional as F
@@ -128,38 +128,15 @@ class ShuffleV1Block(nn.Module):
 
         return x
 
-class eca_layer(nn.Module):
-    """Constructs a ECA module.
-    Args:
-        channel: Number of channels of the input feature map
-        k_size: Adaptive selection of kernel size
-    """
-    def __init__(self, channel, k_size=3):
-        super(eca_layer, self).__init__()
-        self.avg_pool = nn.AdaptiveAvgPool2d(1)
-        self.conv = nn.Conv1d(1, 1, kernel_size=k_size, padding=(k_size - 1) // 2, bias=False) 
-        self.sigmoid = nn.Sigmoid()
-
-    def forward(self, x):
-        # feature descriptor on the global spatial information
-        y = self.avg_pool(x)
-
-        # Two different branches of ECA module
-        y = self.conv(y.squeeze(-1).transpose(-1, -2)).transpose(-1, -2).unsqueeze(-1)
-
-        # Multi-scale information fusion
-        y = self.sigmoid(y)
-
-        return x * y.expand_as(x)
-
 
 class CM_Encoder(nn.Module):
-    def __init__(self, cw):
+    def __init__(self, cw, load_pretrained=True):
         super().__init__()
         self.cw = cw
         encoder = model.learner
-        
-        encoder.load_state_dict(torch.load('./model/0.66_0.51_0.72.pth'))        
+        # comment this line if u dont want to load pretrianed model
+        if load_pretrained:
+            encoder.load_state_dict(torch.load('./model/0.66_0.51_0.72.pth'))        
 
         d_model = 1408
         self.d_model = d_model
@@ -212,11 +189,13 @@ class CM_Encoder(nn.Module):
 
 
 class ssl_encoder(nn.Module):
-    def __init__(self, cw):
+    def __init__(self, cw, load_pretrained=True):
         super().__init__()
         self.cw = cw
-        self.encoder = model.learner  
-        self.encoder.load_state_dict(torch.load('./model/t1_0.62_0.51_0.57.pth'))
+        self.encoder = model.learner
+        # comment this line if u dont want to load pretrianed model
+        if load_pretrained: 
+            self.encoder.load_state_dict(torch.load('./model/t1_0.62_0.51_0.57.pth'))
 
         self.pj =  nn.Sequential(
             nn.Dropout(.3),
@@ -243,16 +222,16 @@ class cls(pl.LightningModule):
         if hparams:
             self.lr = hparams.LR
         if enc=='ca':
-            self.encoder = CM_Encoder(self.cw)
+            self.encoder = CM_Encoder(self.cw, kargs.get('load_pretrained'))
         else:
-            self.encoder = ssl_encoder(self.cw)
+            self.encoder = ssl_encoder(self.cw,kargs.get('load_pretrained'))
 
     def forward(self, T1_HB, T2, out, label=None,):
             return self.encoder(T1_HB, T2, out, label=label)
 
     def training_step(self, batch, _):
         loss, _, = self.forward(**batch)
-        self.log("loss", loss, on_step=False, prog_bar=False)
+        # self.log("loss", loss, on_step=False, prog_bar=False)
         return loss
 
 
@@ -262,11 +241,11 @@ class cls(pl.LightningModule):
         label = batch['label'].view(-1)
         pred = torch.max(logits, dim=1).indices
 
-        pr = precision_recall(pred, label, num_classes=1, is_multiclass=False)
+        pr = precision_recall(pred, label)
         metrics = {
             'val_loss': loss, 
             'val_acc':  accuracy(pred, label),
-            'f1':       f1(pred, label, num_classes=1), 
+            'f1':       f1(pred, label), 
             'recall':   pr[1],
             'prec':     pr[0],
         }

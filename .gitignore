@@ -7,3 +7,4 @@ lightning_logs
 model
 output
 SimCLR
+checkpoints
